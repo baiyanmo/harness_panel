@@ -51,6 +51,9 @@ export interface ChatResponse {
   content: string
   model?: string
   error?: string
+  emotion?: string
+  action?: string
+  light?: boolean
 }
 
 export function sendChat(
@@ -81,6 +84,22 @@ export interface RoomItem {
   image_url?: string
   created_at: string
 }
+
+// --- 灯光 ---
+
+export interface LightControlResponse {
+  status: string
+  state: boolean
+}
+
+export function controlLight(state: boolean): Promise<LightControlResponse> {
+  return request<LightControlResponse>('/light/control', {
+    method: 'POST',
+    body: JSON.stringify({ state }),
+  })
+}
+
+// --- 房间 ---
 
 export function fetchRooms(params?: {
   page?: number

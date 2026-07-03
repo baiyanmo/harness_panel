@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.tools import weather
 from src.routes import chat
 from src.routes import tts
+from src.routes import light
 
 app = FastAPI(title="智慧酒店 API")
 
@@ -25,6 +26,7 @@ app.add_middleware(
 app.include_router(weather.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")
 app.include_router(tts.router, prefix="/api")
+app.include_router(light.router, prefix="/api")
 
 
 if __name__ == "__main__":

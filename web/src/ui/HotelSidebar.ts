@@ -1,5 +1,5 @@
 import './hotelSidebar.css'
-import { fetchWeather, type WeatherData } from '../api/client'
+import { fetchWeather, controlLight, type WeatherData } from '../api/client'
 
 export interface SidebarCallbacks {
   /** 灯光档位变化 0–4 */
@@ -24,6 +24,9 @@ export class HotelSidebar {
   private _lightDots!: NodeListOf<HTMLElement>
   private _lightSlider!: HTMLInputElement
   private _lightLabelEl!: HTMLElement
+
+  // 当前灯光是否已开启（避免重复请求）
+  private _lightOn = false
 
   constructor(private callbacks: SidebarCallbacks) {
     const el = (this.element = document.createElement('div'))
@@ -103,7 +106,7 @@ export class HotelSidebar {
       })
     })
 
-    // 灯光滑块
+    // 灯光滑块——边拖边同步后端
     this._lightSlider.addEventListener('input', () => {
       const level = Number(this._lightSlider.value)
       this._updateLightUI(level)
@@ -112,6 +115,7 @@ export class HotelSidebar {
       const level = Number(this._lightSlider.value)
       this._lightLevel = level
       this._updateLightDots(level)
+      this._syncLightToDevice(level)
       this.callbacks.onLightChange(level)
     })
   }
@@ -161,11 +165,22 @@ export class HotelSidebar {
     this._weatherWindEl.textContent = `${data.wind_speed || '--'}`
   }
 
+  /** 根据档位同步硬件灯光：档位 0 → 关灯，其余 → 开灯 */
+  private _syncLightToDevice(level: number) {
+    const desired = level > 0
+    if (desired === this._lightOn) return  // 状态未变，跳过
+    this._lightOn = desired
+    controlLight(desired).catch(err => {
+      console.warn('[sidebar] 灯光控制失败:', err)
+    })
+  }
+
   /** 设置灯光档位 */
   setLightLevel(level: number) {
     this._lightLevel = level
     this._lightSlider.value = String(level)
     this._updateLightUI(level)
+    this._syncLightToDevice(level)
     this.callbacks.onLightChange(level)
   }
 

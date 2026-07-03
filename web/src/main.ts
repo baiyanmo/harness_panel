@@ -72,6 +72,10 @@ async function main() {
     onWeatherData(data) {
       sidebar.setWeatherCity(data.city)
     },
+    onLightState(on: boolean) {
+      // 灯光开启 → 档位 4（全亮），关闭 → 档位 0（全暗）
+      sidebar.setLightLevel(on ? 4 : 0)
+    },
   })
   document.body.appendChild(chat.element)
 

@@ -8,6 +8,8 @@ export interface ChatCallbacks {
   onAction?: (name: string) => void
   /** 天气更新 */
   onWeatherData?: (data: WeatherData) => void
+  /** 灯光状态变化 */
+  onLightState?: (on: boolean) => void
 }
 
 export class ChatDialog {
@@ -190,9 +192,12 @@ export class ChatDialog {
     try {
       const data = await sendChat([{ role: 'user', content: text }])
 
-      // 表情 / 动作 — 先于内容渲染，防止 passthrough 时表情被等待
+      // 表情 / 动作 / 灯光 — 先于内容渲染，防止 passthrough 时表情被等待
       if (data.emotion) this.callbacks.onEmotion?.(data.emotion)
       if (data.action) this.callbacks.onAction?.(data.action)
+      if (data.light !== undefined && data.light !== null) {
+        this.callbacks.onLightState?.(data.light)
+      }
 
       // 替换 "..." 为实际回复
       const content = data.content || '(AI 回复为空)'

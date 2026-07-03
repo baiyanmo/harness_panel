@@ -25,3 +25,4 @@ class ChatOut(BaseModel):
     error: Optional[str] = None
     emotion: Optional[str] = None   # Live2D 表情
     action: Optional[str] = None    # Live2D 动作
+    light: Optional[bool] = None    # 灯光开关状态

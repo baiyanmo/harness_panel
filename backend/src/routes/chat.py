@@ -6,9 +6,10 @@ from fastapi.responses import StreamingResponse
 from ..config import DOUBAO_CHAT_KEY
 from ..schemas.chat import ChatRequest, ChatOut
 from ..tools.weather import fetch_weather
-from ..tools.patterns import WEATHER, TIME, DATE, SCENERY
+from ..tools.patterns import WEATHER, TIME, DATE, SCENERY, LIGHT
 from ..tools.actions import Live2DActions
 from ..tools.time import now
+from ..tools.bafa_api import send_msg
 
 router = APIRouter()
 
@@ -128,10 +129,23 @@ async def _tool_scenery(_user_text: str):
     emotion, _ = Live2DActions.black_hair()
     return (emotion, None)
 
+async def _tool_light(_user_text: str):
+    """开灯/关灯 → 巴法云控制 + 回复文本"""
+    if re.search(r"开|亮|调大|灯*开", _user_text):
+        await send_msg("LIGHT002", "on")
+        emotion, action = Live2DActions.hair_back2()
+        return ("已经帮您把灯打开了 💡", emotion, action, True)
+    elif re.search(r"关|暗|调小|灯*关", _user_text):
+        await send_msg("LIGHT002", "off")
+        emotion, action = Live2DActions.doze()
+        return ("灯已经炸了 💥", emotion, action, False)
+    return (None, None, None, None)
+
 TOOLS = [
     {"pattern": WEATHER, "handler": _tool_weather},
     {"pattern": TIME, "handler": _tool_time},
     {"pattern": DATE, "handler": _tool_date},
+    {"pattern": LIGHT, "handler": _tool_light},
     {"pattern": SCENERY, "handler": _tool_scenery, "passthrough": True},
 ]
   
@@ -172,7 +186,7 @@ async def chat(req: ChatRequest):
     user_text = req.messages[-1].content if req.messages else ""#取对话记录里最新的
     
     # ── 优先匹配本地工具 ──
-    emotion, action = None, None
+    emotion, action, light_state = None, None, None
     text = None
     for tool in TOOLS:
         if re.search(tool["pattern"], user_text):
@@ -180,6 +194,8 @@ async def chat(req: ChatRequest):
             if isinstance(result, tuple):
                 if len(result) == 2:
                     emotion, action = result
+                elif len(result) == 4:
+                    text, emotion, action, light_state = result
                 else:
                     text, emotion, action = result
             else:
@@ -189,7 +205,7 @@ async def chat(req: ChatRequest):
             if tool.get("passthrough"):
                 break
 
-            return ChatOut(content=text or "", emotion=emotion, action=action)
+            return ChatOut(content=text or "", emotion=emotion, action=action, light=light_state)
 
     # 未命中工具： content 可能为 None 时需要设置
     if text is None:
