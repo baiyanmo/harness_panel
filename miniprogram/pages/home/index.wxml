@@ -1,38 +1,43 @@
 <view class="container home-page">
   <!-- 天气面板 -->
-  <view class="weather-panel" wx:if="{{weather}}">
+  <view class="weather-panel" wx:if="{{weather && !weather.error}}">
     <view class="weather-city">{{weather.city}}</view>
     <view class="weather-temp">{{weather.temperature}}°C</view>
-    <view class="weather-desc">{{weather.weather_desc}} | 湿度 {{weather.humidity}}%</view>
+    <view class="weather-desc">{{weather.weather_desc}}</view>
+    <view class="weather-extra">💧 湿度 {{weather.humidity}}%　🌬 {{weather.wind_speed}}</view>
+  </view>
+  <view class="weather-panel weather-error" wx:if="{{weather && weather.error}}">
+    <view class="weather-city">天气获取失败</view>
+    <view class="weather-desc">{{weather.error}}</view>
   </view>
 
   <!-- AI 管家卡片 -->
   <view class="ai-card card" bindtap="goChat">
     <view class="ai-avatar">🤖</view>
     <view class="ai-info">
-      <view class="ai-title">AI 管家</view>
-      <view class="ai-subtitle">语音对话 · 智能服务</view>
+      <view class="ai-title">贾维斯 AI 管家</view>
+      <view class="ai-subtitle">语音对话 · 智能服务 · 天气查询</view>
     </view>
     <view class="ai-arrow">›</view>
   </view>
 
   <!-- 快捷入口 -->
   <view class="quick-grid">
-    <view class="quick-item card" bindtap="goRooms">
-      <view class="quick-icon">🏨</view>
-      <view class="quick-label">房间预订</view>
+    <view class="quick-item card" bindtap="goChat">
+      <view class="quick-icon">💬</view>
+      <view class="quick-label">开始对话</view>
     </view>
-    <view class="quick-item card" bindtap="goOrders">
-      <view class="quick-icon">📋</view>
-      <view class="quick-label">我的订单</view>
+    <view class="quick-item card" bindtap="goLight">
+      <view class="quick-icon">💡</view>
+      <view class="quick-label">灯光控制</view>
     </view>
     <view class="quick-item card" bindtap="goChat">
       <view class="quick-icon">☁️</view>
       <view class="quick-label">天气查询</view>
     </view>
     <view class="quick-item card" bindtap="goChat">
-      <view class="quick-icon">💬</view>
-      <view class="quick-label">AI 客服</view>
+      <view class="quick-icon">⏰</view>
+      <view class="quick-label">智能报时</view>
     </view>
   </view>
 </view>

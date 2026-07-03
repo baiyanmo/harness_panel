@@ -1,0 +1,27 @@
+<view class="container light-page">
+  <view class="page-title">💡 灯光控制</view>
+
+  <!-- 当前档位显示 -->
+  <view class="current-level card">
+    <view class="current-icon">{{levels[level].icon}}</view>
+    <view class="current-label">{{levels[level].label}}</view>
+    <view class="current-status">{{lightOn ? '灯光已开启' : '灯光已关闭'}}</view>
+  </view>
+
+  <!-- 档位选择 -->
+  <view class="levels-grid">
+    <view
+      wx:for="{{levels}}"
+      wx:key="lv"
+      class="level-item card {{level === item.lv ? 'active' : ''}}"
+      bindtap="onLevelTap"
+      data-lv="{{item.lv}}"
+    >
+      <view class="level-icon">{{item.icon}}</view>
+      <view class="level-label">{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 提示 -->
+  <view class="tip">点击选择灯光档位，将通过巴法云控制客房灯光</view>
+</view>

@@ -1,7 +1,21 @@
 .me-page { padding-top:24rpx; }
-.user-card { display:flex; flex-direction:column; align-items:center; padding:40rpx; margin-bottom:24rpx; }
-.user-avatar { font-size:72rpx; margin-bottom:16rpx; }
-.user-name { font-size:34rpx; font-weight:600; color:#e0f7fa; }
-.user-role { font-size:26rpx; color:rgba(0,255,255,0.4); margin-top:4rpx; }
-.menu-item { display:flex; justify-content:space-between; align-items:center; padding:28rpx 32rpx; font-size:30rpx; color:#e0f7fa; }
-.arrow { color:rgba(0,255,255,0.3); font-size:32rpx; }
+
+.profile-card { display:flex; flex-direction:column; align-items:center; padding:48rpx 32rpx; margin-bottom:32rpx; background:linear-gradient(135deg, rgba(0,96,100,0.5), rgba(0,188,212,0.2)); }
+.avatar { font-size:80rpx; margin-bottom:16rpx; }
+.app-name { font-size:36rpx; font-weight:700; color:#e0f7fa; }
+.app-version { font-size:26rpx; color:rgba(0,229,255,0.5); margin-top:8rpx; }
+
+.section-title { font-size:28rpx; color:rgba(0,229,255,0.6); margin-bottom:16rpx; margin-top:8rpx; }
+
+.feature-list { margin-bottom:24rpx; }
+.feature-item { display:flex; align-items:center; padding:24rpx; }
+.feature-icon { font-size:40rpx; margin-right:20rpx; }
+.feature-info { flex:1; }
+.feature-name { font-size:30rpx; color:#e0f7fa; font-weight:600; }
+.feature-desc { font-size:24rpx; color:rgba(255,255,255,0.4); margin-top:4rpx; }
+
+.tech-card { padding:8rpx 24rpx; }
+.tech-row { display:flex; justify-content:space-between; padding:16rpx 0; border-bottom:1rpx solid rgba(0,229,255,0.08); }
+.tech-row:last-child { border-bottom:none; }
+.tech-label { font-size:28rpx; color:rgba(0,229,255,0.5); }
+.tech-value { font-size:28rpx; color:#e0f7fa; }

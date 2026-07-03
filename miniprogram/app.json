@@ -2,11 +2,8 @@
   "pages": [
     "pages/home/index",
     "pages/chat/index",
-    "pages/rooms/index",
-    "pages/room-detail/index",
-    "pages/orders/index",
-    "pages/me/index",
-    "pages/login/index"
+    "pages/light/index",
+    "pages/me/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,8 +18,7 @@
     "borderStyle": "black",
     "list": [
       { "pagePath": "pages/home/index", "text": "首页", "iconPath": "images/home.png", "selectedIconPath": "images/home-active.png" },
-      { "pagePath": "pages/rooms/index", "text": "房间", "iconPath": "images/room.png", "selectedIconPath": "images/room-active.png" },
-      { "pagePath": "pages/orders/index", "text": "订单", "iconPath": "images/order.png", "selectedIconPath": "images/order-active.png" },
+      { "pagePath": "pages/chat/index", "text": "AI管家", "iconPath": "images/chat.png", "selectedIconPath": "images/chat-active.png" },
       { "pagePath": "pages/me/index", "text": "我的", "iconPath": "images/me.png", "selectedIconPath": "images/me-active.png" }
     ]
   },

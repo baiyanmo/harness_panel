@@ -1,0 +1,16 @@
+.light-page { padding-top:24rpx; }
+.page-title { font-size:36rpx; font-weight:700; color:#e0f7fa; margin-bottom:32rpx; text-align:center; }
+
+.current-level { display:flex; flex-direction:column; align-items:center; padding:48rpx 32rpx; margin-bottom:32rpx; background:linear-gradient(135deg, rgba(0,96,100,0.5), rgba(0,188,212,0.2)); }
+.current-icon { font-size:80rpx; margin-bottom:16rpx; }
+.current-label { font-size:36rpx; font-weight:600; color:#00e5ff; }
+.current-status { font-size:26rpx; color:rgba(255,255,255,0.5); margin-top:8rpx; }
+
+.levels-grid { display:flex; gap:16rpx; justify-content:center; }
+.level-item { display:flex; flex-direction:column; align-items:center; padding:28rpx 20rpx; flex:1; border:2rpx solid transparent; transition:all 0.2s; }
+.level-item.active { border-color:#00e5ff; background:rgba(0,229,255,0.12); }
+.level-icon { font-size:44rpx; margin-bottom:8rpx; }
+.level-label { font-size:24rpx; color:rgba(255,255,255,0.7); }
+.level-item.active .level-label { color:#00e5ff; font-weight:600; }
+
+.tip { text-align:center; font-size:24rpx; color:rgba(255,255,255,0.3); margin-top:40rpx; }

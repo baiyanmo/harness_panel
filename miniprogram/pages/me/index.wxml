@@ -1,12 +1,41 @@
 <view class="container me-page">
-  <view class="user-card card" wx:if="{{userInfo}}">
-    <view class="user-avatar">👤</view>
-    <view class="user-name">{{userInfo.username}}</view>
-    <view class="user-role">{{userInfo.role === 'admin' ? '管理员' : '普通用户'}}</view>
+  <!-- 头部 -->
+  <view class="profile-card card">
+    <view class="avatar">🏨</view>
+    <view class="app-name">智慧酒店 AI 管家</view>
+    <view class="app-version">v{{version}}</view>
   </view>
 
-  <view class="menu-list">
-    <view class="menu-item card">📋 我的订单<text class="arrow">›</text></view>
-    <view class="menu-item card" bindtap="onLogout">🚪 退出登录<text class="arrow">›</text></view>
+  <!-- 功能列表 -->
+  <view class="section-title">功能介绍</view>
+  <view class="feature-list">
+    <view class="feature-item card" wx:for="{{features}}" wx:key="name">
+      <view class="feature-icon">{{item.icon}}</view>
+      <view class="feature-info">
+        <view class="feature-name">{{item.name}}</view>
+        <view class="feature-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 技术栈 -->
+  <view class="section-title">技术栈</view>
+  <view class="tech-card card">
+    <view class="tech-row">
+      <text class="tech-label">后端</text>
+      <text class="tech-value">FastAPI + 火山方舟</text>
+    </view>
+    <view class="tech-row">
+      <text class="tech-label">前端</text>
+      <text class="tech-value">微信小程序</text>
+    </view>
+    <view class="tech-row">
+      <text class="tech-label">IoT</text>
+      <text class="tech-value">巴法云 MQTT</text>
+    </view>
+    <view class="tech-row">
+      <text class="tech-label">AI</text>
+      <text class="tech-value">豆包大模型 + 火山 TTS</text>
+    </view>
   </view>
 </view>
