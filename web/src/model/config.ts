@@ -17,7 +17,7 @@ export function fitToScreen(app: Application, model: Live2DModel): number {
   )
   const clamped = clampScale(s)
   model.scale.set(clamped)
-  model.x = app.renderer.width * 0.35
+  model.x = app.renderer.width * 0.25
   model.y = app.renderer.height * 0.5
   return clamped
 }
