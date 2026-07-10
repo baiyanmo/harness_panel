@@ -3,5 +3,5 @@ from pydantic import BaseModel
 
 
 class ControlRequest(BaseModel):
-    """通用控制请求"""
-    state: bool
+    """灯光颜色控制请求：red / green / blue / off"""
+    color: str

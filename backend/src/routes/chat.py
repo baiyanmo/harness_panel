@@ -1,5 +1,6 @@
 """聊天路由 — POST /api/chat  调用火山方舟（OpenAI 兼容）"""
 import re
+import json
 import httpx
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
@@ -9,7 +10,7 @@ from ..tools.weather import fetch_weather
 from ..tools.patterns import WEATHER, TIME, DATE, SCENERY, LIGHT
 from ..tools.actions import Live2DActions
 from ..tools.time import now
-from ..tools.bafa_api import send_msg
+from ..tools.llm_tools import LLM_TOOLS, execute_tool, control_light
 
 router = APIRouter()
 
@@ -130,15 +131,15 @@ async def _tool_scenery(_user_text: str):
     return (emotion, None)
 
 async def _tool_light(_user_text: str):
-    """开灯/关灯 → 巴法云控制 + 回复文本"""
+    """开灯/关灯 → 正则解析意图，调用共享 control_light 执行"""
+    if re.search(r"关|暗|调小|灯*关", _user_text):
+        return await control_light("off")
+    if re.search(r"蓝", _user_text):
+        return await control_light("on", "blue")
+    if re.search(r"绿", _user_text):
+        return await control_light("on", "green")
     if re.search(r"开|亮|调大|灯*开", _user_text):
-        await send_msg("LIGHT002", "on")
-        emotion, action = Live2DActions.hair_back2()
-        return ("已经帮您把灯打开了 💡", emotion, action, True)
-    elif re.search(r"关|暗|调小|灯*关", _user_text):
-        await send_msg("LIGHT002", "off")
-        emotion, action = Live2DActions.doze()
-        return ("灯已经炸了 💥", emotion, action, False)
+        return await control_light("on", "red")
     return (None, None, None, None)
 
 TOOLS = [
@@ -161,7 +162,10 @@ SYSTEM_PROMPT = """你是智慧酒店的 AI 管家，名叫'贾维斯'。
   - 酒店的地址是：河北省邯郸市丛台区太极路19号。
   - 你只能回答酒店相关的问题，推荐周边景点和美食。
   - 说话简短一点，方式俏皮可爱活泼一点。
-  - 不认识的问题诚实说不知道，不要捏造。"""
+  - 不认识的问题诚实说不知道，不要捏造。
+  - 当客人要求开关灯、调节灯光颜色时，请调用 control_light 工具。
+  - 可用颜色：red（红）、green（绿）、blue（蓝）。
+  - 如果客人要求的功能目前没有对应工具（如控制空调、窗帘等），请礼貌地回复"抱歉，该功能暂且还不支持哦~"。"""
 
 # ────────────────── 流式生成器 ──────────────────
 async def _stream(payload: dict):
@@ -219,23 +223,58 @@ async def chat(req: ChatRequest):
         "temperature": req.temperature,
     }
 
-    # 流式：返回 SSE
+    # 流式：返回 SSE（暂不支持 tool calling）
     if req.stream:
         return StreamingResponse(
             _stream(payload),
             media_type="text/event-stream",
         )
 
-    # 非流式：返回 ChatOut
+    # 非流式：带 tool calling 支持
+    payload["tools"] = LLM_TOOLS
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
-            resp = await client.post(ARK_URL, json=payload, headers={
+            headers = {
                 "Authorization": f"Bearer {DOUBAO_CHAT_KEY}",
                 "Content-Type": "application/json",
-            })
+            }
+
+            resp = await client.post(ARK_URL, json=payload, headers=headers)
             data = resp.json()
-            choice = data["choices"][0]["message"]
-            return ChatOut(content=choice["content"], model=data.get("model"),
+            choice = data["choices"][0]
+            msg = choice["message"]
+
+            # ── 豆包发起了工具调用 ──
+            if msg.get("tool_calls"):
+                for tc in msg["tool_calls"]:
+                    fn = tc["function"]
+                    args = json.loads(fn["arguments"]) if fn.get("arguments") else {}
+                    result_text, t_emotion, t_action, t_light = await execute_tool(fn["name"], args)
+                    # 用工具执行的 emotion/action（比豆包回复更精准）
+                    if t_emotion:
+                        emotion = t_emotion
+                    if t_action:
+                        action = t_action
+                    if t_light is not None:
+                        light_state = t_light
+
+                    # 追加 assistant tool_calls 消息 + tool 结果
+                    payload["messages"].append(msg)
+                    payload["messages"].append({
+                        "role": "tool",
+                        "tool_call_id": tc["id"],
+                        "content": result_text,
+                    })
+
+                # 第二轮调用：让豆包基于工具结果生成自然回复
+                payload.pop("tools", None)
+                resp2 = await client.post(ARK_URL, json=payload, headers=headers)
+                data2 = resp2.json()
+                final_content = data2["choices"][0]["message"].get("content", "")
+                return ChatOut(content=final_content, emotion=emotion, action=action, light=light_state)
+
+            # ── 普通文本回复 ──
+            return ChatOut(content=msg.get("content", ""), model=data.get("model"),
                            emotion=emotion, action=action)
     except Exception as e:
         return ChatOut(content="", error=str(e),

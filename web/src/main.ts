@@ -20,8 +20,8 @@ void main()
 async function main() {
   const infoEl = document.getElementById('info')!
   const container = document.getElementById('live2d-container')!
-  const lightOverlay = document.getElementById('light-overlay')!
-
+  container.style.transition = 'filter 0.6s ease'
+  container.style.filter = 'brightness(0.25)' // 默认关灯状态
   // ---- PixiJS Application (嵌入 #live2d-container) ----
   const app = new Application({
     width: container.clientWidth,
@@ -52,9 +52,9 @@ async function main() {
 
   // ---- 左侧栏 ----
   const sidebar = new HotelSidebar({
-    onLightChange(level) {
-      const opacities = [0.65, 0.45, 0.28, 0.12, 0.0]
-      lightOverlay.style.opacity = String(opacities[level] ?? 0)
+    onLightChange(color) {
+      // 关灯调低页面亮度，开灯恢复
+      container.style.filter = color === 'off' ? 'brightness(0.25)' : 'brightness(1)'
     },
   })
   document.body.appendChild(sidebar.element)
@@ -72,9 +72,11 @@ async function main() {
     onWeatherData(data) {
       sidebar.setWeatherCity(data.city)
     },
-    onLightState(on: boolean) {
-      // 灯光开启 → 档位 4（全亮），关闭 → 档位 0（全暗）
-      sidebar.setLightLevel(on ? 4 : 0)
+    onLightState(color: string) {
+      // 聊天触发灯光 → 同步侧边栏 UI（不重复请求巴法云）
+      sidebar.applyLightFromChat(color)
+      // 同步亮度
+      container.style.filter = color === 'off' ? 'brightness(0.25)' : 'brightness(1)'
     },
   })
   document.body.appendChild(chat.element)

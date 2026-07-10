@@ -1,9 +1,9 @@
 import './hotelSidebar.css'
-import { fetchWeather, controlLight, type WeatherData } from '../api/client'
+import { fetchWeather, controlLight, fetchLightStatus, type WeatherData } from '../api/client'
 
 export interface SidebarCallbacks {
-  /** 灯光档位变化 0–4 */
-  onLightChange: (level: number) => void
+  /** 灯光颜色变化 'red' | 'green' | 'blue' | 'off' */
+  onLightChange: (color: string) => void
   /** 天气数据更新 */
   onWeatherUpdate?: (data: WeatherData) => void
 }
@@ -12,8 +12,8 @@ export class HotelSidebar {
   readonly element: HTMLDivElement
 
   private _weatherCity = '邯郸'
-  private _lightLevel = 4
   private _refreshTimer: ReturnType<typeof setInterval> | null = null
+  private _lightPollTimer: ReturnType<typeof setInterval> | null = null
 
   // 子元素引用
   private _weatherCityEl!: HTMLElement
@@ -21,12 +21,11 @@ export class HotelSidebar {
   private _weatherDescEl!: HTMLElement
   private _weatherHumidityEl!: HTMLElement
   private _weatherWindEl!: HTMLElement
-  private _lightDots!: NodeListOf<HTMLElement>
-  private _lightSlider!: HTMLInputElement
   private _lightLabelEl!: HTMLElement
+  private _lightBtns!: NodeListOf<HTMLElement>
 
-  // 当前灯光是否已开启（避免重复请求）
-  private _lightOn = false
+  // 当前灯光颜色
+  private _lightColor: string = 'off'
 
   constructor(private callbacks: SidebarCallbacks) {
     const el = (this.element = document.createElement('div'))
@@ -70,16 +69,14 @@ export class HotelSidebar {
       <!-- 灯光 -->
       <div class="panel light-panel">
         <div class="panel-title">💡 灯光控制</div>
-        <div class="light-dots" id="hs-light-dots">
-          <div class="light-dot" data-level="0"></div>
-          <div class="light-dot" data-level="1"></div>
-          <div class="light-dot" data-level="2"></div>
-          <div class="light-dot" data-level="3"></div>
-          <div class="light-dot active" data-level="4"></div>
+        <div class="light-color-btns" id="hs-light-btns">
+          <button class="light-btn" data-color="red">🔴 红灯</button>
+          <button class="light-btn" data-color="green">🟢 绿灯</button>
+          <button class="light-btn" data-color="blue">🔵 蓝灯</button>
+          <button class="light-btn active" data-color="off">⚫ 关灯</button>
         </div>
-        <input type="range" class="light-slider" id="hs-light-slider" min="0" max="4" value="4" step="1">
         <div class="light-label">
-          <span id="hs-light-label">💡 全亮</span>
+          <span id="hs-light-label">⚫ 灯已关闭</span>
         </div>
       </div>
     `
@@ -90,47 +87,60 @@ export class HotelSidebar {
     this._weatherDescEl = el.querySelector('#hs-desc')!
     this._weatherHumidityEl = el.querySelector('#hs-humidity')!
     this._weatherWindEl = el.querySelector('#hs-wind')!
-    this._lightDots = el.querySelectorAll('#hs-light-dots .light-dot')
-    this._lightSlider = el.querySelector('#hs-light-slider')!
+    this._lightBtns = el.querySelectorAll('#hs-light-btns .light-btn')
     this._lightLabelEl = el.querySelector('#hs-light-label')!
 
     this._bindEvents()
   }
 
   private _bindEvents() {
-    // 灯光圆点点击
-    this._lightDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const level = Number(dot.dataset.level)
-        this.setLightLevel(level)
+    this._lightBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const color = btn.dataset.color || 'off'
+        this.setLightColor(color)
       })
     })
+  }
 
-    // 灯光滑块——边拖边同步后端
-    this._lightSlider.addEventListener('input', () => {
-      const level = Number(this._lightSlider.value)
-      this._updateLightUI(level)
+  /** 更新按钮 UI 状态 */
+  private _updateLightBtns(color: string) {
+    this._lightBtns.forEach(b => {
+      b.classList.toggle('active', b.dataset.color === color)
     })
-    this._lightSlider.addEventListener('change', () => {
-      const level = Number(this._lightSlider.value)
-      this._lightLevel = level
-      this._updateLightDots(level)
-      this._syncLightToDevice(level)
-      this.callbacks.onLightChange(level)
+    const labels: Record<string, string> = {
+      red: '🔴 红灯',
+      green: '🟢 绿灯',
+      blue: '🔵 蓝灯',
+      off: '⚫ 灯已关闭',
+    }
+    this._lightLabelEl.textContent = labels[color] || '⚫ 灯已关闭'
+  }
+
+  /** 同步硬件灯光 */
+  private _syncLightToDevice(color: string) {
+    controlLight(color).catch(err => {
+      console.warn('[sidebar] 灯光控制失败:', err)
     })
   }
 
-  private _updateLightUI(level: number) {
-    // 实时更新圆点和 label（slider input 事件）
-    this._updateLightDots(level)
-    const labels = ['🌑 全暗', '🌒 微光', '🌓 柔和', '🌖 明亮', '💡 全亮']
-    this._lightLabelEl.textContent = labels[level]
+  /** 设置灯光颜色 */
+  setLightColor(color: string) {
+    this._lightColor = color
+    this._updateLightBtns(color)
+    this._syncLightToDevice(color)
+    this.callbacks.onLightChange(color)
   }
 
-  private _updateLightDots(level: number) {
-    this._lightDots.forEach(d => {
-      d.classList.toggle('active', Number(d.dataset.level) <= level)
-    })
+  get lightColor() {
+    return this._lightColor
+  }
+
+  /** 根据后端返回的聊天灯光状态设置颜色（不重复请求） */
+  applyLightFromChat(color: string) {
+    if (color === this._lightColor) return
+    this._lightColor = color
+    this._updateLightBtns(color)
+    // 不调 _syncLightToDevice，因为 chat 已经发过巴法云指令了
   }
 
   /** 开始加载数据 */
@@ -138,6 +148,9 @@ export class HotelSidebar {
     await this._loadWeather()
     // 每 30 分钟刷新天气
     this._refreshTimer = setInterval(() => this._loadWeather(), 30 * 60 * 1000)
+    // 每 5 秒轮询灯光状态
+    this._pollLightStatus()
+    this._lightPollTimer = setInterval(() => this._pollLightStatus(), 5000)
   }
 
   private async _loadWeather() {
@@ -165,29 +178,6 @@ export class HotelSidebar {
     this._weatherWindEl.textContent = `${data.wind_speed || '--'}`
   }
 
-  /** 根据档位同步硬件灯光：档位 0 → 关灯，其余 → 开灯 */
-  private _syncLightToDevice(level: number) {
-    const desired = level > 0
-    if (desired === this._lightOn) return  // 状态未变，跳过
-    this._lightOn = desired
-    controlLight(desired).catch(err => {
-      console.warn('[sidebar] 灯光控制失败:', err)
-    })
-  }
-
-  /** 设置灯光档位 */
-  setLightLevel(level: number) {
-    this._lightLevel = level
-    this._lightSlider.value = String(level)
-    this._updateLightUI(level)
-    this._syncLightToDevice(level)
-    this.callbacks.onLightChange(level)
-  }
-
-  get lightLevel() {
-    return this._lightLevel
-  }
-
   /** 设置天气城市 */
   setWeatherCity(city: string) {
     this._weatherCity = city
@@ -202,5 +192,22 @@ export class HotelSidebar {
   /** 销毁 */
   destroy() {
     if (this._refreshTimer) clearInterval(this._refreshTimer)
+    if (this._lightPollTimer) clearInterval(this._lightPollTimer)
+  }
+
+  /** 轮询巴法云设备灯光状态并同步 UI */
+  private async _pollLightStatus() {
+    try {
+      const data = await fetchLightStatus()
+      const color = data.color
+      // 只处理已知颜色，unknown 表示无设备数据
+      if (color && color !== 'unknown' && color !== this._lightColor) {
+        this._lightColor = color
+        this._updateLightBtns(color)
+        this.callbacks.onLightChange(color)
+      }
+    } catch (err) {
+      console.warn('[sidebar] 灯光状态轮询失败:', err)
+    }
   }
 }

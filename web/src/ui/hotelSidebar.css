@@ -169,32 +169,55 @@
 #hotel-sidebar .room-stat.cleaning .stat-num { color: #f0c040; }
 
 /* ---------- 灯光 ---------- */
-#hotel-sidebar .light-dots {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
+#hotel-sidebar .light-color-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
-#hotel-sidebar .light-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+#hotel-sidebar .light-btn {
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #aab;
+  font-size: 13px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
-#hotel-sidebar .light-dot.active {
-  background: #ffe08a;
-  border-color: #ffc53d;
-  box-shadow: 0 0 12px rgba(255, 197, 61, 0.5);
+#hotel-sidebar .light-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-#hotel-sidebar .light-slider {
-  width: 100%;
-  accent-color: #ffc53d;
-  margin: 0;
+#hotel-sidebar .light-btn.active {
+  border-color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  color: #fff;
+}
+
+#hotel-sidebar .light-btn[data-color="red"].active {
+  background: rgba(255, 50, 50, 0.2);
+  border-color: rgba(255, 50, 50, 0.5);
+  box-shadow: 0 0 12px rgba(255, 50, 50, 0.3);
+}
+
+#hotel-sidebar .light-btn[data-color="green"].active {
+  background: rgba(50, 255, 50, 0.2);
+  border-color: rgba(50, 255, 50, 0.5);
+  box-shadow: 0 0 12px rgba(50, 255, 50, 0.3);
+}
+
+#hotel-sidebar .light-btn[data-color="blue"].active {
+  background: rgba(50, 100, 255, 0.2);
+  border-color: rgba(50, 100, 255, 0.5);
+  box-shadow: 0 0 12px rgba(50, 100, 255, 0.3);
+}
+
+#hotel-sidebar .light-btn[data-color="off"].active {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 #hotel-sidebar .light-label {

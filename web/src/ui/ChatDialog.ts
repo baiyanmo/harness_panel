@@ -8,8 +8,8 @@ export interface ChatCallbacks {
   onAction?: (name: string) => void
   /** 天气更新 */
   onWeatherData?: (data: WeatherData) => void
-  /** 灯光状态变化 */
-  onLightState?: (on: boolean) => void
+  /** 灯光颜色 'red' | 'green' | 'blue' | 'off' */
+  onLightState?: (color: string) => void
 }
 
 export class ChatDialog {

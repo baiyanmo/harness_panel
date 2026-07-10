@@ -53,7 +53,7 @@ export interface ChatResponse {
   error?: string
   emotion?: string
   action?: string
-  light?: boolean
+  light?: string
 }
 
 export function sendChat(
@@ -89,14 +89,24 @@ export interface RoomItem {
 
 export interface LightControlResponse {
   status: string
-  state: boolean
+  color: string
 }
 
-export function controlLight(state: boolean): Promise<LightControlResponse> {
+export function controlLight(color: string): Promise<LightControlResponse> {
   return request<LightControlResponse>('/light/control', {
     method: 'POST',
-    body: JSON.stringify({ state }),
+    body: JSON.stringify({ color }),
   })
+}
+
+export interface LightStatusResponse {
+  status: string
+  color: string
+  msg?: string
+}
+
+export function fetchLightStatus(): Promise<LightStatusResponse> {
+  return request<LightStatusResponse>('/light/status')
 }
 
 // --- 房间 ---

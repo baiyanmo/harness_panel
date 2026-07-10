@@ -71,17 +71,6 @@
       display: block;
     }
 
-    /* 灯光 overlay — 盖在 Canvas 上方，默认全亮(透明) */
-    #light-overlay {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: #000;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      z-index: 5;
-    }
-
     /* ---------- 底部提示 ---------- */
     #info {
       position: fixed;
@@ -113,9 +102,7 @@
     <!-- 主体 -->
     <div id="main-area">
       <!-- Live2D 区 -->
-      <div id="live2d-container">
-        <div id="light-overlay"></div>
-      </div>
+      <div id="live2d-container"></div>
     </div>
   </div>
 
