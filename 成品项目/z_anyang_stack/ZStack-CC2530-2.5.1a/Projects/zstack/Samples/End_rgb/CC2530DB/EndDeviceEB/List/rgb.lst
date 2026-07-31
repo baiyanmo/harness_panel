@@ -1,0 +1,239 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V10.30.1.6000 for 8051               08/Jul/2026  14:56:20
+# Copyright 2004-2018 IAR Systems AB.
+# PC-locked license - IAR Embedded Workbench for 8051
+#
+#    Core               =  plain
+#    Code model         =  banked
+#    Data model         =  large
+#    Calling convention =  xdata reentrant
+#    Constant location  =  data_rom
+#    Dptr setup         =  1,16
+#                          
+#    Source file        =  
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\rgb.c
+#    Command line       =  
+#        -f C:\Users\30397\AppData\Local\Temp\EW1B95.tmp
+#        (D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\rgb.c
+#        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC
+#        -D LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List
+#        -lA
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List
+#        --diag_suppress Pe001,Pa010 -o
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\Obj
+#        -e --debug --core=plain --dptr=16,1 --data_model=large
+#        --code_model=banked --calling_convention=xdata_reentrant
+#        --place_constants=data_rom --nr_virtual_regs 8 -f
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+#        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+#        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+#        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x3F01
+#        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+#        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+#        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+#        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+#        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+#        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+#        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+#        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+#        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+#        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+#        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+#        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100
+#        -DREJOIN_POLL_RATE=440) -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\Source\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\ZMain\TI2530DB\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\hal\include\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\include\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mt\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\osal\include\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\services\saddr\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\services\sdata\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\af\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sec\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sys\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\zmac\
+#        -I
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+#        -Ohz --require_prototypes --no_code_motion)
+#    Locale             =  Chinese (Simplified)_CHN.936
+#    List file          =  
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List\rgb.lst
+#    Object file        =  
+#        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\Obj\rgb.r51
+#
+###############################################################################
+
+D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\rgb.c
+      1          #include "rgb.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          
+      3          #define RGB_R      (P0_5)
+      4          #define RGB_G      (P0_6)
+      5          #define RGB_B      (P0_7)
+      6          
+      7          /*
+      8          R -- P0_5
+      9          G -- P0_6
+     10          B -- P0_7
+     11          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     12          void RGB_Config(void)
+   \                     RGB_Config:
+     13          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     14            P0SEL &= ~(1<<5);
+   \   000000   53F3DF       ANL       0xf3,#0xdf
+     15            P0DIR |= (1<<5);
+   \   000003   43FD20       ORL       0xfd,#0x20
+     16            
+     17            P0SEL &= ~(1<<6);
+   \   000006   53F3BF       ANL       0xf3,#0xbf
+     18            P0DIR |= (1<<6);
+   \   000009   43FD40       ORL       0xfd,#0x40
+     19            
+     20            P0SEL &= ~(1<<7);
+   \   00000C   53F37F       ANL       0xf3,#0x7f
+     21            P0DIR |= (1<<7);
+   \   00000F   43FD80       ORL       0xfd,#0x80
+     22          }
+   \   000012   02....       LJMP      ?BRET
+   \   000015                REQUIRE P0SEL
+   \   000015                REQUIRE P0DIR
+     23          
+     24          
+     25          //#define RGB_MODE_ON   0
+     26          //#define RGB_MODE_OFF  1
+     27          //#define RGB_MODE_R    2
+     28          //#define RGB_MODE_B    3
+     29          //#define RGB_MODE_G    4
+     30          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     31          void RGB_Mode(uint8 mode)
+   \                     RGB_Mode:
+     32          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     33            switch(mode){
+   \   000000   E9           MOV       A,R1
+   \   000001   600C         JZ        ??RGB_Mode_0
+   \   000003   24FE         ADD       A,#-0x2
+   \   000005   600E         JZ        ??RGB_Mode_1
+   \   000007   14           DEC       A
+   \   000008   600F         JZ        ??RGB_Mode_2
+   \   00000A   14           DEC       A
+   \   00000B   6012         JZ        ??RGB_Mode_3
+   \   00000D   8018         SJMP      ??RGB_Mode_4
+     34              case RGB_MODE_ON:RGB_R = 0;RGB_G = 0;RGB_B = 0;break;
+   \                     ??RGB_Mode_0:
+   \   00000F   C285         CLR       0x80.5
+   \   000011   C286         CLR       0x80.6
+   \   000013   800E         SJMP      ??RGB_Mode_5
+     35              case RGB_MODE_R:RGB_R = 0;RGB_G = 1;RGB_B = 1;break;
+   \                     ??RGB_Mode_1:
+   \   000015   C285         CLR       0x80.5
+   \   000017   8010         SJMP      ??RGB_Mode_6
+     36              case RGB_MODE_G:RGB_R = 1;RGB_G = 0;RGB_B = 1;break;
+   \                     ??RGB_Mode_2:
+   \   000019   D285         SETB      0x80.5
+   \   00001B   C286         CLR       0x80.6
+   \   00001D   800C         SJMP      ??RGB_Mode_7
+     37              case RGB_MODE_B:RGB_R = 1;RGB_G = 1;RGB_B = 0;break;
+   \                     ??RGB_Mode_3:
+   \   00001F   D285         SETB      0x80.5
+   \   000021   D286         SETB      0x80.6
+   \                     ??RGB_Mode_5:
+   \   000023   C287         CLR       0x80.7
+   \   000025   8006         SJMP      ??RGB_Mode_8
+     38              default:RGB_R = 1;RGB_G = 1;RGB_B = 1;break;
+   \                     ??RGB_Mode_4:
+   \   000027   D285         SETB      0x80.5
+   \                     ??RGB_Mode_6:
+   \   000029   D286         SETB      0x80.6
+   \                     ??RGB_Mode_7:
+   \   00002B   D287         SETB      0x80.7
+     39            }
+     40          }
+   \                     ??RGB_Mode_8:
+   \   00002D   02....       LJMP      ?BRET
+   \   000030                REQUIRE _A_P0
+     41          
+
+   Maximum stack usage in bytes:
+
+   ISTACK Function
+   ------ --------
+      0   RGB_Config
+      0   RGB_Mode
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       1  P0DIR
+       1  P0SEL
+      21  RGB_Config
+      48  RGB_Mode
+       1  _A_P0
+      12  -- Other
+
+ 
+ 69 bytes in segment BANKED_CODE
+ 12 bytes in segment BANK_RELAYS
+  3 bytes in segment SFR_AN
+ 
+ 12 bytes of CODE     memory
+  0 bytes of DATA     memory (+ 3 bytes shared)
+ 69 bytes of HUGECODE memory
+
+Errors: none
+Warnings: none

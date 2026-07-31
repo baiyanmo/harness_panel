@@ -1,0 +1,764 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V10.30.1.6000 for 8051              08/Jul/2026  11:03:53
+// Copyright 2004-2018 IAR Systems AB.
+// PC-locked license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\su03t.c
+//    Command line       =  
+//        -f C:\Users\30397\AppData\Local\Temp\EW4B95.tmp
+//        (D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\su03t.c
+//        -D NWK_AUTO_POLL -D ZTOOL_P1 -D xMT_TASK -D MT_SYS_FUNC -D
+//        MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List
+//        -lA
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\Obj
+//        -e --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -f
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wEndev.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3
+//        -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x3F01
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100
+//        -DREJOIN_POLL_RATE=440) -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\Source\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -Ohz --require_prototypes --no_code_motion)
+//    Locale             =  Chinese (Simplified)_CHN.936
+//    List file          =  
+//        D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\CC2530DB\EndDeviceEB\List\su03t.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME su03t
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__register_banks", "*"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?V0
+        EXTERN ?V1
+        EXTERN ?V2
+        EXTERN ?V3
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?L_SUB_X
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?UL_GE_X
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC `??Su03t_Config::?relay`
+        FUNCTION `??Su03t_Config::?relay`,0203H
+        PUBLIC `??Su03t_DataAnalysis::?relay`
+        FUNCTION `??Su03t_DataAnalysis::?relay`,0203H
+        PUBLIC `??Su03t_RecvData::?relay`
+        FUNCTION `??Su03t_RecvData::?relay`,0203H
+        PUBLIC Su03t_Config
+        FUNCTION Su03t_Config,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC Su03t_DataAnalysis
+        FUNCTION Su03t_DataAnalysis,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 14, STACK
+        PUBLIC Su03t_RecvData
+        FUNCTION Su03t_RecvData,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 3, STACK
+        PUBWEAK __Constant_b
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+        
+          CFI Common cfiCommon1 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-2
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B SameValue
+          CFI A SameValue
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 SameValue
+          CFI R1 SameValue
+          CFI R2 SameValue
+          CFI R3 SameValue
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT SameValue
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon1
+        
+MT_UartInit         SYMBOL "MT_UartInit"
+`??MT_UartInit::?relay` SYMBOL "?relay", MT_UartInit
+MT_UartRegisterTaskID SYMBOL "MT_UartRegisterTaskID"
+`??MT_UartRegisterTaskID::?relay` SYMBOL "?relay", MT_UartRegisterTaskID
+memset              SYMBOL "memset"
+`??memset::?relay`  SYMBOL "?relay", memset
+osal_GetSystemClock SYMBOL "osal_GetSystemClock"
+`??osal_GetSystemClock::?relay` SYMBOL "?relay", osal_GetSystemClock
+Su03t_Config        SYMBOL "Su03t_Config"
+`??Su03t_Config::?relay` SYMBOL "?relay", Su03t_Config
+Su03t_DataAnalysis  SYMBOL "Su03t_DataAnalysis"
+`??Su03t_DataAnalysis::?relay` SYMBOL "?relay", Su03t_DataAnalysis
+Su03t_RecvData      SYMBOL "Su03t_RecvData"
+`??Su03t_RecvData::?relay` SYMBOL "?relay", Su03t_RecvData
+
+        EXTERN `??MT_UartInit::?relay`
+        FUNCTION `??MT_UartInit::?relay`,00H
+        EXTERN `??MT_UartRegisterTaskID::?relay`
+        FUNCTION `??MT_UartRegisterTaskID::?relay`,00H
+        EXTERN `??memset::?relay`
+        FUNCTION `??memset::?relay`,00H
+        EXTERN `??osal_GetSystemClock::?relay`
+        FUNCTION `??osal_GetSystemClock::?relay`,00H
+        EXTERN GenericApp_TaskID
+        EXTERN MT_UartInit
+        FUNCTION MT_UartInit,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MT_UartRegisterTaskID
+        FUNCTION MT_UartRegisterTaskID,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memset
+        FUNCTION memset,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 14, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN osal_GetSystemClock
+        FUNCTION osal_GetSystemClock,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+
+// D:\My_Software\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\End_rgb\Source\su03t.c
+//    1 #include "su03t.h"
+//    2 #include "MT.h"
+//    3 #include "MT_UART.h"
+//    4 #include "string.h"
+//    5 
+//    6 /*
+//    7 在应用任务的系统事件中，添加 CMD_SERIAL_MSG 串口的消息事件
+//    8 并在这个事件内接收数据 Su03t_RecvData
+//    9 做一个定时器，周期性检查数据是否接收完成，并解析数据 Su03t_DataAnalysis
+//   10 */
+//   11 
+//   12 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   13 static Su03tRecvDef su03t = {0};
+su03t:
+        DS 261
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   14 static mtOSALSerialData_t *su03tMsg = NULL;
+su03tMsg:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   15 extern byte GenericApp_TaskID;//将串口的事件绑定到该任务下
+//   16 
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//   17 void Su03t_Config(void)
+Su03t_Config:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function Su03t_Config
+        CODE
+//   18 {
+        FUNCALL Su03t_Config, MT_UartInit
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Su03t_Config, MT_UartRegisterTaskID
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH      DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH      DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   19   //加上串口相关的初始化及事件注册函数
+//   20   MT_UartInit();
+        ; Setup parameters for call to function MT_UartInit
+        LCALL     `??MT_UartInit::?relay`; Banked call to: MT_UartInit
+//   21   MT_UartRegisterTaskID(GenericApp_TaskID);
+        ; Setup parameters for call to function MT_UartRegisterTaskID
+        MOV       DPTR,#GenericApp_TaskID
+        MOVX      A,@DPTR
+        MOV       R1,A
+        LCALL     `??MT_UartRegisterTaskID::?relay`; Banked call to: MT_UartRegisterTaskID
+//   22 }
+          CFI EndBlock cfiBlock0
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine0:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI NoFunction
+          CFI CFA_SP SP+-5
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI DPH0 Frame(CFA_SP, 5)
+        POP       DPH
+          CFI CFA_SP SP+-4
+          CFI DPH0 SameValue
+        POP       DPL
+          CFI CFA_SP SP+-3
+          CFI DPL0 SameValue
+        LJMP      ?BRET
+          CFI EndBlock cfiBlock1
+//   23 
+//   24 
+//   25 
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//   26 void Su03t_RecvData(afIncomingMSGPacket_t * MSGpkt)
+Su03t_RecvData:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function Su03t_RecvData
+        CODE
+//   27 {
+        FUNCALL Su03t_RecvData, osal_GetSystemClock
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH      DPL
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        PUSH      DPH
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   28   su03tMsg = (mtOSALSerialData_t *)MSGpkt;//UartMsg->msg[0] -- 接收到的数据长度 
+        MOV       DPTR,#su03tMsg
+        MOV       A,R2
+        MOVX      @DPTR,A
+        INC       DPTR
+        MOV       A,R3
+        MOVX      @DPTR,A
+//   29   su03t.time = osal_GetSystemClock();
+        ; Setup parameters for call to function osal_GetSystemClock
+        LCALL     `??osal_GetSystemClock::?relay`; Banked call to: osal_GetSystemClock
+        MOV       DPTR,#su03t + 257
+        LCALL     ?XSTORE_R2345
+//   30   for(int i=0; i<su03tMsg->msg[0]; i++) {
+        MOV       R0,#0x0
+        MOV       R1,#0x0
+        SJMP      ??Su03t_RecvData_0
+//   31     su03t.buff[su03t.cnt++] = su03tMsg->msg[i+1];
+??Su03t_RecvData_1:
+        LCALL     ?Subroutine1 & 0xFFFF
+//   32   } 
+??CrossCallReturnLabel_0:
+        ADD       A,R0
+        MOV       R2,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        ADDC      A,R1
+        MOV       DPL,R2
+        MOV       DPH,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        PUSH      A
+          CFI CFA_SP SP+-6
+        MOV       DPTR,#su03t + 256
+        MOVX      A,@DPTR
+        MOV       R2,A
+        MOV       A,#su03t & 0xff
+        ADD       A,R2
+        MOV       DPL,A
+        CLR       A
+        ADDC      A,#(su03t >> 8) & 0xff
+        MOV       DPH,A
+        POP       A
+          CFI CFA_SP SP+-5
+        MOVX      @DPTR,A
+        MOV       DPTR,#su03t + 256
+        MOVX      A,@DPTR
+        INC       A
+        MOVX      @DPTR,A
+        INC       R0
+        MOV       A,R0
+        JNZ       ??Su03t_RecvData_0
+        INC       R1
+??Su03t_RecvData_0:
+        LCALL     ?Subroutine1 & 0xFFFF
+??CrossCallReturnLabel_1:
+        MOV       R2,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        MOV       DPH,A
+        MOV       DPL,R2
+        MOVX      A,@DPTR
+        MOV       R2,A
+        CLR       C
+        MOV       A,R0
+        SUBB      A,R2
+        MOV       A,R1
+        SUBB      A,#0x0
+        MOV       C,0xD0 /* PSW */.2
+        XRL       A,PSW
+        RLC       A
+        JC        ??Su03t_RecvData_1
+//   33 }
+        SJMP      ?Subroutine0
+          CFI EndBlock cfiBlock2
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine1:
+          CFI Block cfiCond3 Using cfiCommon0
+          CFI Function Su03t_RecvData
+          CFI Conditional ??CrossCallReturnLabel_0
+          CFI DPL0 Frame(CFA_SP, 4)
+          CFI DPH0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-7
+          CFI Block cfiCond4 Using cfiCommon0
+          CFI (cfiCond4) Function Su03t_RecvData
+          CFI (cfiCond4) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond4) DPL0 Frame(CFA_SP, 4)
+          CFI (cfiCond4) DPH0 Frame(CFA_SP, 5)
+          CFI (cfiCond4) CFA_SP SP+-7
+          CFI Block cfiPicker5 Using cfiCommon1
+          CFI (cfiPicker5) NoFunction
+          CFI (cfiPicker5) Picker
+        MOV       DPTR,#su03tMsg
+        MOVX      A,@DPTR
+        MOV       R2,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        MOV       DPH,A
+        MOV       DPL,R2
+        INC       DPTR
+        INC       DPTR
+        MOVX      A,@DPTR
+        RET
+          CFI EndBlock cfiCond3
+          CFI EndBlock cfiCond4
+          CFI EndBlock cfiPicker5
+//   34 
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//   35 uint8 Su03t_DataAnalysis(void)
+Su03t_DataAnalysis:
+          CFI Block cfiBlock6 Using cfiCommon0
+          CFI Function Su03t_DataAnalysis
+        CODE
+//   36 {
+        FUNCALL Su03t_DataAnalysis, osal_GetSystemClock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Su03t_DataAnalysis, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 14, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 14, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?V0
+        REQUIRE ?V1
+        REQUIRE ?V2
+        REQUIRE ?V3
+        MOV       A,#-0xc
+        LCALL     ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+//   37   uint8 ret = 0;
+        MOV       R6,#0x0
+//   38   if(osal_GetSystemClock() - su03t.time > 10) {//10ms就判定结束
+        ; Setup parameters for call to function osal_GetSystemClock
+        LCALL     `??osal_GetSystemClock::?relay`; Banked call to: osal_GetSystemClock
+        MOV       ?V0,R2
+        MOV       ?V1,R3
+        MOV       ?V2,R4
+        MOV       ?V3,R5
+        MOV       DPTR,#su03t + 257
+        MOV       R0,#?V0
+        LCALL     ?L_SUB_X
+        MOV       DPH,#(__Constant_b >> 8) & 0xff
+        MOV       DPL,#__Constant_b & 0xff
+        MOV       R0,#?V0
+        LCALL     ?UL_GE_X
+        JNC       ??Su03t_DataAnalysis_0
+//   39     if(su03t.cnt > 0) {  
+        MOV       DPTR,#su03t + 256
+        MOVX      A,@DPTR
+        JZ        ??Su03t_DataAnalysis_0
+//   40       if(su03t.buff[0] == 0xAA && su03t.buff[1] == 0x55) {
+        MOV       DPTR,#su03t
+        MOVX      A,@DPTR
+        XRL       A,#0xaa
+        JNZ       ??Su03t_DataAnalysis_1
+        INC       DPTR
+        MOVX      A,@DPTR
+        XRL       A,#0x55
+        JNZ       ??Su03t_DataAnalysis_1
+//   41         switch(su03t.buff[2]) {
+        INC       DPTR
+        MOVX      A,@DPTR
+        DEC       A
+        JZ        ??Su03t_DataAnalysis_2
+        DEC       A
+        JZ        ??Su03t_DataAnalysis_3
+        DEC       A
+        JZ        ??Su03t_DataAnalysis_4
+        DEC       A
+        JZ        ??Su03t_DataAnalysis_5
+        DEC       A
+        JZ        ??Su03t_DataAnalysis_6
+        SJMP      ??Su03t_DataAnalysis_1
+//   42           case 1:ret = 1;break;//打开氛围灯
+??Su03t_DataAnalysis_2:
+        MOV       R6,#0x1
+        SJMP      ??Su03t_DataAnalysis_1
+//   43           case 2:ret = 2;break;//关闭氛围灯
+??Su03t_DataAnalysis_3:
+        MOV       R6,#0x2
+        SJMP      ??Su03t_DataAnalysis_1
+//   44           case 3:ret = 3;break;//打开红灯
+??Su03t_DataAnalysis_4:
+        MOV       R6,#0x3
+        SJMP      ??Su03t_DataAnalysis_1
+//   45           case 4:ret = 4;break;//打开绿灯
+??Su03t_DataAnalysis_5:
+        MOV       R6,#0x4
+        SJMP      ??Su03t_DataAnalysis_1
+//   46           case 5:ret = 5;break;//打开蓝灯
+??Su03t_DataAnalysis_6:
+        MOV       R6,#0x5
+//   47         }
+//   48       }
+//   49       memset((uint8*)&su03t, 0, sizeof(su03t));
+??Su03t_DataAnalysis_1:
+        ; Setup parameters for call to function memset
+        MOV       ?V0,#0x5
+        MOV       ?V1,#0x1
+        MOV       R0,#?V0
+        LCALL     ?PUSH_XSTACK_I_TWO
+          CFI CFA_XSP16 add(XSP16, 14)
+        MOV       R4,#0x0
+        MOV       R5,#0x0
+        MOV       R2,#su03t & 0xff
+        MOV       R3,#(su03t >> 8) & 0xff
+        LCALL     `??memset::?relay`; Banked call to: memset
+        MOV       A,#0x2
+        LCALL     ?DEALLOC_XSTACK8
+          CFI CFA_XSP16 add(XSP16, 12)
+//   50     }
+//   51   }
+//   52   return ret;
+??Su03t_DataAnalysis_0:
+        MOV       A,R6
+        MOV       R1,A
+        MOV       R7,#0x4
+        LJMP      ?BANKED_LEAVE_XDATA
+//   53 }
+          CFI EndBlock cfiBlock6
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_b:
+        DD 11
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Su03t_Config::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Su03t_Config
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Su03t_RecvData::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Su03t_RecvData
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??Su03t_DataAnalysis::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    Su03t_DataAnalysis
+
+        END
+//   54 
+//   55 
+//   56 
+//   57 
+// 
+// 266 bytes in segment BANKED_CODE
+//  18 bytes in segment BANK_RELAYS
+//   4 bytes in segment XDATA_ROM_C
+// 263 bytes in segment XDATA_Z
+// 
+//  18 bytes of CODE     memory
+//   0 bytes of CONST    memory (+ 4 bytes shared)
+// 266 bytes of HUGECODE memory
+// 263 bytes of XDATA    memory
+//
+//Errors: none
+//Warnings: none

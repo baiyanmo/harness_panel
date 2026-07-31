@@ -1,0 +1,1393 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V10.30.1.6000 for 8051              08/Jul/2026  23:26:08
+// Copyright 2004-2018 IAR Systems AB.
+// PC-locked license - IAR Embedded Workbench for 8051
+//
+//    Core               =  plain
+//    Code model         =  banked
+//    Data model         =  large
+//    Calling convention =  xdata reentrant
+//    Constant location  =  data_rom
+//    Dptr setup         =  1,16
+//                          
+//    Source file        =  
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Components\hal\target\CC2530EB\_hal_uart_isr.c
+//    Command line       =  
+//        -f C:\Users\86183\AppData\Local\Temp\EW6B6A.tmp
+//        (B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Components\hal\target\CC2530EB\_hal_uart_isr.c
+//        -D ZTOOL_P1 -D xMT_TASK -D MT_SYS_FUNC -D MT_ZDO_FUNC -D
+//        LCD_SUPPORTED=DEBUG -lC
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\CoordinatorEB\List
+//        -lA
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\CoordinatorEB\List
+//        --diag_suppress Pe001,Pa010 -o
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\CoordinatorEB\Obj
+//        -e --debug --core=plain --dptr=16,1 --data_model=large
+//        --code_model=banked --calling_convention=xdata_reentrant
+//        --place_constants=data_rom --nr_virtual_regs 8 -f
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg
+//        (-DCPU32MHZ -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRUE
+//        -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8 -DMAC_CFG_RX_MAX=5
+//        -DZDO_COORDINATOR -DRTR_NWK) -f
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+//        (-DZIGBEEPRO -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR
+//        -DDEFAULT_CHANLIST=0x00000800 -DZDAPP_CONFIG_PAN_ID=0x3F01
+//        -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MASK=0x007F
+//        -DBEACON_REQUEST_DELAY=100 -DBEACON_REQ_DELAY_MASK=0x00FF
+//        -DLINK_STATUS_JITTER_MASK=0x007F -DROUTE_EXPIRY_TIME=30
+//        -DAPSC_ACK_WAIT_DURATION_POLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7
+//        -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3
+//        -DNWK_MAX_DATA_RETRIES=2 -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9
+//        -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40 -DNWK_MAX_BINDING_ENTRIES=4
+//        -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07,
+//        0x09, 0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C,
+//        0x0D}" -DMAC_MAX_FRAME_SIZE=116 -DZDNWKMGR_MIN_TRANSMISSIONS=20
+//        "-DCONST=const __code" -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE
+//        -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100
+//        -DREJOIN_POLL_RATE=440) -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\Source\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\ZMain\TI2530DB\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\hal\include\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\hal\target\CC2530EB\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\mac\include\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\mac\high_level\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\mt\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\osal\include\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\services\saddr\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\services\sdata\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\af\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\nwk\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\sapi\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\sec\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\sys\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\stack\zdo\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\zmac\
+//        -I
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\..\..\..\..\..\Components\zmac\f8w\
+//        -Ohz --require_prototypes --no_code_motion)
+//    Locale             =  Chinese (Simplified)_CHN.936
+//    List file          =  
+//        B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Coor_rgb\CC2530DB\CoordinatorEB\List\_hal_uart_isr.s51
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME _hal_uart_isr
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__register_banks", "*"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC `??HalUARTReadISR::?relay`
+        FUNCTION `??HalUARTReadISR::?relay`,0203H
+        PUBLIC `??HalUARTWriteISR::?relay`
+        FUNCTION `??HalUARTWriteISR::?relay`,0203H
+        PUBWEAK `??halUart1RxIsr::??INTVEC 27`
+        PUBWEAK `??halUart1TxIsr::??INTVEC 115`
+        PUBLIC HalUARTReadISR
+        FUNCTION HalUARTReadISR,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC HalUARTWriteISR
+        FUNCTION HalUARTWriteISR,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBWEAK IEN2
+        PUBWEAK ST0
+        PUBWEAK U1DBUF
+        PUBWEAK _A_IRCON2
+        PUBLIC halUart1RxIsr
+        FUNCTION halUart1RxIsr,0233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 7, STACK
+        PUBLIC halUart1TxIsr
+        FUNCTION halUart1TxIsr,0233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 6, STACK
+        
+          CFI Names cfiNames0
+          CFI StackFrame CFA_SP SP IDATA
+          CFI StackFrame CFA_PSP16 PSP16 XDATA
+          CFI StackFrame CFA_XSP16 XSP16 XDATA
+          CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+          CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+          CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+          CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+          CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+          CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+          CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+          CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+          CFI Resource SP:8, PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+          CFI VirtualResource ?RET:24
+          CFI Resource ?BRET_EXT:8
+          CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+          CFI ResourceParts PSP16 PSPH, PSPL
+          CFI ResourceParts XSP16 XSPH, XSPL
+          CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+          CFI EndNames cfiNames0
+        
+          CFI Common cfiCommon0 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-3
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B Undefined
+          CFI A Undefined
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 Undefined
+          CFI R1 Undefined
+          CFI R2 Undefined
+          CFI R3 Undefined
+          CFI R4 Undefined
+          CFI R5 Undefined
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT Frame(CFA_SP, 3)
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon0
+        
+        
+          CFI Common cfiCommon1 Using cfiNames0
+          CFI CodeAlign 1
+          CFI DataAlign -1
+          CFI ReturnAddress ?RET CODE
+          CFI CFA_DOVERLAY Used
+          CFI CFA_IOVERLAY Used
+          CFI CFA_SP SP+-2
+          CFI CFA_PSP16 PSP16+0
+          CFI CFA_XSP16 XSP16+0
+          CFI `PSW.CY` SameValue
+          CFI `B.BR0` SameValue
+          CFI `B.BR1` SameValue
+          CFI `B.BR2` SameValue
+          CFI `B.BR3` SameValue
+          CFI `B.BR4` SameValue
+          CFI `B.BR5` SameValue
+          CFI `B.BR6` SameValue
+          CFI `B.BR7` SameValue
+          CFI `VB.BR8` SameValue
+          CFI `VB.BR9` SameValue
+          CFI `VB.BR10` SameValue
+          CFI `VB.BR11` SameValue
+          CFI `VB.BR12` SameValue
+          CFI `VB.BR13` SameValue
+          CFI `VB.BR14` SameValue
+          CFI `VB.BR15` SameValue
+          CFI VB SameValue
+          CFI B SameValue
+          CFI A SameValue
+          CFI PSW SameValue
+          CFI DPL0 SameValue
+          CFI DPH0 SameValue
+          CFI R0 SameValue
+          CFI R1 SameValue
+          CFI R2 SameValue
+          CFI R3 SameValue
+          CFI R4 SameValue
+          CFI R5 SameValue
+          CFI R6 SameValue
+          CFI R7 SameValue
+          CFI V0 SameValue
+          CFI V1 SameValue
+          CFI V2 SameValue
+          CFI V3 SameValue
+          CFI V4 SameValue
+          CFI V5 SameValue
+          CFI V6 SameValue
+          CFI V7 SameValue
+          CFI PSPH Undefined
+          CFI PSPL Undefined
+          CFI XSPH Undefined
+          CFI XSPL Undefined
+          CFI ?RET Concat
+          CFI ?BRET_EXT SameValue
+          CFI ?RET_HIGH Frame(CFA_SP, 2)
+          CFI ?RET_LOW Frame(CFA_SP, 1)
+          CFI EndCommon cfiCommon1
+        
+HalUARTReadISR      SYMBOL "HalUARTReadISR"
+`??HalUARTReadISR::?relay` SYMBOL "?relay", HalUARTReadISR
+HalUARTWriteISR     SYMBOL "HalUARTWriteISR"
+`??HalUARTWriteISR::?relay` SYMBOL "?relay", HalUARTWriteISR
+halUart1RxIsr       SYMBOL "halUart1RxIsr"
+`??halUart1RxIsr::??INTVEC 27` SYMBOL "??INTVEC 27", halUart1RxIsr
+halUart1TxIsr       SYMBOL "halUart1TxIsr"
+`??halUart1TxIsr::??INTVEC 115` SYMBOL "??INTVEC 115", halUart1TxIsr
+
+// B:\zigbee\³ÉÆ·ÏîÄ¿\z_anyang_stack\ZStack-CC2530-2.5.1a\Components\hal\target\CC2530EB\_hal_uart_isr.c
+//    1 /**************************************************************************************************
+//    2   Filename:       _hal_uart_isr.c
+//    3   Revised:        $Date: 2012-03-27 14:53:26 -0700 (Tue, 27 Mar 2012) $
+//    4   Revision:       $Revision: 29910 $
+//    5 
+//    6   Description: This file contains the interface to the H/W UART driver by ISR.
+//    7 
+//    8 
+//    9   Copyright 2006-2012 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights
+//   12   granted under the terms of a software license agreement between the user
+//   13   who downloaded the software, his/her employer (which must be your employer)
+//   14   and Texas Instruments Incorporated (the "License").  You may not use this
+//   15   Software unless you agree to abide by the terms of the License. The License
+//   16   limits your use, and you acknowledge, that the Software may not be modified,
+//   17   copied or distributed unless embedded on a Texas Instruments microcontroller
+//   18   or used solely and exclusively in conjunction with a Texas Instruments radio
+//   19   frequency transceiver, which is integrated into your product.  Other than for
+//   20   the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//   21   works of, modify, distribute, perform, display or sell this Software and/or
+//   22   its documentation for any purpose.
+//   23 
+//   24   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//   25   PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//   26   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//   27   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//   28   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   29   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//   30   LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+//   31   INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+//   32   OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+//   33   OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//   34   (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   35 
+//   36   Should you have any questions regarding your right to use this Software,
+//   37   contact Texas Instruments Incorporated at www.TI.com.
+//   38 **************************************************************************************************/
+//   39 
+//   40 /*********************************************************************
+//   41  * INCLUDES
+//   42  */
+//   43 
+//   44 #include "hal_types.h"
+//   45 #include "hal_assert.h"
+//   46 #include "hal_board.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,095H
+// unsigned char volatile __sfr ST0
+ST0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09aH
+// unsigned char volatile __sfr IEN2
+IEN2:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e8H
+// union <unnamed> volatile __sfr _A_IRCON2
+_A_IRCON2:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f9H
+// unsigned char volatile __sfr U1DBUF
+U1DBUF:
+        DATA8
+        DS 1
+//   47 #include "hal_defs.h"
+//   48 #include "hal_mcu.h"
+//   49 #include "hal_uart.h"
+//   50 #if defined MT_TASK
+//   51 #include "MT_UART.h"
+//   52 #endif
+//   53 
+//   54 /*********************************************************************
+//   55  * MACROS
+//   56  */
+//   57 
+//   58 //#define HAL_UART_ASSERT(expr)        HAL_ASSERT((expr))
+//   59 #define HAL_UART_ASSERT(expr)
+//   60 
+//   61 #define HAL_UART_ISR_RX_AVAIL() \ 
+//   62   (isrCfg.rxTail >= isrCfg.rxHead) ? \ 
+//   63   (isrCfg.rxTail - isrCfg.rxHead) : \ 
+//   64   (HAL_UART_ISR_RX_MAX - isrCfg.rxHead + isrCfg.rxTail)
+//   65 
+//   66 #define HAL_UART_ISR_TX_AVAIL() \ 
+//   67   (isrCfg.txHead > isrCfg.txTail) ? \ 
+//   68   (isrCfg.txHead - isrCfg.txTail - 1) : \ 
+//   69   (HAL_UART_ISR_TX_MAX - isrCfg.txTail + isrCfg.txHead - 1)
+//   70 
+//   71 /*********************************************************************
+//   72  * CONSTANTS
+//   73  */
+//   74 
+//   75 // UxCSR - USART Control and Status Register.
+//   76 #define CSR_MODE                   0x80
+//   77 #define CSR_RE                     0x40
+//   78 #define CSR_SLAVE                  0x20
+//   79 #define CSR_FE                     0x10
+//   80 #define CSR_ERR                    0x08
+//   81 #define CSR_RX_BYTE                0x04
+//   82 #define CSR_TX_BYTE                0x02
+//   83 #define CSR_ACTIVE                 0x01
+//   84 
+//   85 // UxUCR - USART UART Control Register.
+//   86 #define UCR_FLUSH                  0x80
+//   87 #define UCR_FLOW                   0x40
+//   88 #define UCR_D9                     0x20
+//   89 #define UCR_BIT9                   0x10
+//   90 #define UCR_PARITY                 0x08
+//   91 #define UCR_SPB                    0x04
+//   92 #define UCR_STOP                   0x02
+//   93 #define UCR_START                  0x01
+//   94 
+//   95 #define UTX0IE                     0x04
+//   96 #define UTX1IE                     0x08
+//   97 
+//   98 #define P2DIR_PRIPO                0xC0
+//   99 
+//  100 // Incompatible redefinitions result with more than one UART driver sub-module.
+//  101 #undef PxOUT
+//  102 #undef PxDIR
+//  103 #undef PxSEL
+//  104 #undef UxCSR
+//  105 #undef UxUCR
+//  106 #undef UxDBUF
+//  107 #undef UxBAUD
+//  108 #undef UxGCR
+//  109 #undef URXxIE
+//  110 #undef URXxIF
+//  111 #undef UTXxIE
+//  112 #undef UTXxIF
+//  113 #undef HAL_UART_PERCFG_BIT
+//  114 #undef HAL_UART_Px_RTS
+//  115 #undef HAL_UART_Px_CTS
+//  116 #undef HAL_UART_Px_RX_TX
+//  117 #if (HAL_UART_ISR == 1)
+//  118 #define PxOUT                      P0
+//  119 #define PxDIR                      P0DIR
+//  120 #define PxSEL                      P0SEL
+//  121 #define UxCSR                      U0CSR
+//  122 #define UxUCR                      U0UCR
+//  123 #define UxDBUF                     U0DBUF
+//  124 #define UxBAUD                     U0BAUD
+//  125 #define UxGCR                      U0GCR
+//  126 #define URXxIE                     URX0IE
+//  127 #define URXxIF                     URX0IF
+//  128 #define UTXxIE                     UTX0IE
+//  129 #define UTXxIF                     UTX0IF
+//  130 #else
+//  131 #define PxOUT                      P1
+//  132 #define PxDIR                      P1DIR
+//  133 #define PxSEL                      P1SEL
+//  134 #define UxCSR                      U1CSR
+//  135 #define UxUCR                      U1UCR
+//  136 #define UxDBUF                     U1DBUF
+//  137 #define UxBAUD                     U1BAUD
+//  138 #define UxGCR                      U1GCR
+//  139 #define URXxIE                     URX1IE
+//  140 #define URXxIF                     URX1IF
+//  141 #define UTXxIE                     UTX1IE
+//  142 #define UTXxIF                     UTX1IF
+//  143 #endif
+//  144 
+//  145 #if (HAL_UART_ISR == 1)
+//  146 #define HAL_UART_PERCFG_BIT        0x01         // USART0 on P0, Alt-1; so clear this bit.
+//  147 #define HAL_UART_Px_RX_TX          0x0C         // Peripheral I/O Select for Rx/Tx.
+//  148 #define HAL_UART_Px_RTS            0x20         // Peripheral I/O Select for RTS.
+//  149 #define HAL_UART_Px_CTS            0x10         // Peripheral I/O Select for CTS.
+//  150 #else
+//  151 #define HAL_UART_PERCFG_BIT        0x02         // USART1 on P1, Alt-2; so set this bit.
+//  152 #define HAL_UART_Px_RTS            0x20         // Peripheral I/O Select for RTS.
+//  153 #define HAL_UART_Px_CTS            0x10         // Peripheral I/O Select for CTS.
+//  154 #define HAL_UART_Px_RX_TX          0xC0         // Peripheral I/O Select for Rx/Tx.
+//  155 #endif
+//  156 
+//  157 // The timeout tick is at 32-kHz, so multiply msecs by 33.
+//  158 #define HAL_UART_MSECS_TO_TICKS    33
+//  159 
+//  160 #if defined MT_TASK
+//  161 #define HAL_UART_ISR_TX_MAX        MT_UART_DEFAULT_MAX_TX_BUFF
+//  162 #define HAL_UART_ISR_RX_MAX        MT_UART_DEFAULT_MAX_RX_BUFF
+//  163 #define HAL_UART_ISR_HIGH          MT_UART_DEFAULT_THRESHOLD
+//  164 #define HAL_UART_ISR_IDLE         (MT_UART_DEFAULT_IDLE_TIMEOUT * HAL_UART_MSECS_TO_TICKS)
+//  165 #else
+//  166 #if !defined HAL_UART_ISR_RX_MAX
+//  167 #define HAL_UART_ISR_RX_MAX        128
+//  168 #endif
+//  169 #if !defined HAL_UART_ISR_TX_MAX
+//  170 #define HAL_UART_ISR_TX_MAX        HAL_UART_ISR_RX_MAX
+//  171 #endif
+//  172 #if !defined HAL_UART_ISR_HIGH
+//  173 #define HAL_UART_ISR_HIGH         (HAL_UART_ISR_RX_MAX / 2 - 16)
+//  174 #endif
+//  175 #if !defined HAL_UART_ISR_IDLE
+//  176 #define HAL_UART_ISR_IDLE         (6 * HAL_UART_MSECS_TO_TICKS)
+//  177 #endif
+//  178 #endif
+//  179 
+//  180 /*********************************************************************
+//  181  * TYPEDEFS
+//  182  */
+//  183 
+//  184 typedef struct
+//  185 {
+//  186   uint8 rxBuf[HAL_UART_ISR_RX_MAX];
+//  187 #if HAL_UART_ISR_RX_MAX < 256
+//  188   uint8 rxHead;
+//  189   volatile uint8 rxTail;
+//  190 #else
+//  191   uint16 rxHead;
+//  192   volatile uint16 rxTail;
+//  193 #endif
+//  194   uint8 rxTick;
+//  195   uint8 rxShdw;
+//  196 
+//  197   uint8 txBuf[HAL_UART_ISR_TX_MAX];
+//  198 #if HAL_UART_ISR_TX_MAX < 256
+//  199   volatile uint8 txHead;
+//  200   uint8 txTail;
+//  201 #else
+//  202   volatile uint16 txHead;
+//  203   uint16 txTail;
+//  204 #endif
+//  205   uint8 txMT;
+//  206 
+//  207   halUARTCBack_t uartCB;
+//  208 } uartISRCfg_t;
+//  209 
+//  210 /*********************************************************************
+//  211  * GLOBAL VARIABLES
+//  212  */
+//  213 
+//  214 /*********************************************************************
+//  215  * GLOBAL FUNCTIONS
+//  216  */
+//  217 
+//  218 /*********************************************************************
+//  219  * LOCAL VARIABLES
+//  220  */
+//  221 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//  222 static uartISRCfg_t isrCfg;
+isrCfg:
+        DS 265
+        REQUIRE __INIT_XDATA_Z
+//  223 
+//  224 /*********************************************************************
+//  225  * LOCAL FUNCTIONS
+//  226  */
+//  227 
+//  228 static void HalUARTInitISR(void);
+//  229 static void HalUARTOpenISR(halUARTCfg_t *config);
+//  230 uint16 HalUARTReadISR(uint8 *buf, uint16 len);
+//  231 uint16 HalUARTWriteISR(uint8 *buf, uint16 len);
+//  232 static void HalUARTPollISR(void);
+//  233 static uint16 HalUARTRxAvailISR(void);
+//  234 static void HalUARTSuspendISR(void);
+//  235 static void HalUARTResumeISR(void);
+//  236 
+//  237 /******************************************************************************
+//  238  * @fn      HalUARTInitISR
+//  239  *
+//  240  * @brief   Initialize the UART
+//  241  *
+//  242  * @param   none
+//  243  *
+//  244  * @return  none
+//  245  *****************************************************************************/
+//  246 static void HalUARTInitISR(void)
+//  247 {
+//  248   // Set P2 priority - USART0 over USART1 if both are defined.
+//  249   P2DIR &= ~P2DIR_PRIPO;
+//  250   P2DIR |= HAL_UART_PRIPO;
+//  251 
+//  252 #if (HAL_UART_ISR == 1)
+//  253   PERCFG &= ~HAL_UART_PERCFG_BIT;    // Set UART0 I/O location to P0.
+//  254 #else
+//  255   PERCFG |= HAL_UART_PERCFG_BIT;     // Set UART1 I/O location to P1.
+//  256 #endif
+//  257   PxSEL  |= HAL_UART_Px_RX_TX;       // Enable Tx and Rx on P1.
+//  258   ADCCFG &= ~HAL_UART_Px_RX_TX;      // Make sure ADC doesnt use this.
+//  259   UxCSR = CSR_MODE;                  // Mode is UART Mode.
+//  260   UxUCR = UCR_FLUSH;                 // Flush it.
+//  261 }
+//  262 
+//  263 /******************************************************************************
+//  264  * @fn      HalUARTUnInitISR
+//  265  *
+//  266  * @brief   UnInitialize the UART.
+//  267  *
+//  268  * @param   none
+//  269  *
+//  270  * @return  none
+//  271  *****************************************************************************/
+//  272 static void HalUARTUnInitISR(void)
+//  273 {
+//  274   UxCSR = 0;
+//  275   URXxIE = 0;
+//  276   URXxIF = 0;
+//  277   IEN2 &= ~UTXxIE;  
+//  278   UTXxIF = 0;
+//  279 }
+//  280 
+//  281 /******************************************************************************
+//  282  * @fn      HalUARTOpenISR
+//  283  *
+//  284  * @brief   Open a port according tp the configuration specified by parameter.
+//  285  *
+//  286  * @param   config - contains configuration information
+//  287  *
+//  288  * @return  none
+//  289  *****************************************************************************/
+//  290 static void HalUARTOpenISR(halUARTCfg_t *config)
+//  291 {
+//  292   isrCfg.uartCB = config->callBackFunc;
+//  293   // Only supporting subset of baudrate for code size - other is possible.
+//  294   HAL_UART_ASSERT((config->baudRate == HAL_UART_BR_9600) ||
+//  295                   (config->baudRate == HAL_UART_BR_19200) ||
+//  296                   (config->baudRate == HAL_UART_BR_38400) ||
+//  297                   (config->baudRate == HAL_UART_BR_57600) ||
+//  298                   (config->baudRate == HAL_UART_BR_115200));
+//  299   
+//  300   if (config->baudRate == HAL_UART_BR_57600 ||
+//  301       config->baudRate == HAL_UART_BR_115200)
+//  302   {
+//  303     UxBAUD = 216;
+//  304   }
+//  305   else
+//  306   {
+//  307     UxBAUD = 59;
+//  308   }
+//  309   
+//  310   switch (config->baudRate)
+//  311   {
+//  312     case HAL_UART_BR_9600:
+//  313       UxGCR = 8;
+//  314       break;
+//  315     case HAL_UART_BR_19200:
+//  316       UxGCR = 9;
+//  317       break;
+//  318     case HAL_UART_BR_38400:
+//  319     case HAL_UART_BR_57600:
+//  320       UxGCR = 10;
+//  321       break;
+//  322     default:
+//  323       UxGCR = 11;
+//  324       break;
+//  325   }
+//  326 
+//  327   // 8 bits/char; no parity; 1 stop bit; stop bit hi.
+//  328   if (config->flowControl)
+//  329   {
+//  330     UxUCR = UCR_FLOW | UCR_STOP;
+//  331     PxSEL |= HAL_UART_Px_RTS | HAL_UART_Px_CTS;
+//  332   }
+//  333   else
+//  334   {
+//  335     UxUCR = UCR_STOP;
+//  336   }
+//  337 
+//  338   UxCSR |= CSR_RE;
+//  339   URXxIE = 1;
+//  340   UTXxIF = 1;  // Prime the ISR pump.
+//  341 }
+//  342 
+//  343 /*****************************************************************************
+//  344  * @fn      HalUARTReadISR
+//  345  *
+//  346  * @brief   Read a buffer from the UART
+//  347  *
+//  348  * @param   buf  - valid data buffer at least 'len' bytes in size
+//  349  *          len  - max length number of bytes to copy to 'buf'
+//  350  *
+//  351  * @return  length of buffer that was read
+//  352  *****************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  353 uint16 HalUARTReadISR(uint8 *buf, uint16 len)
+HalUARTReadISR:
+          CFI Block cfiBlock0 Using cfiCommon0
+          CFI Function HalUARTReadISR
+        CODE
+//  354 {
+        MOV       A,#-0x9
+        LCALL     ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  355   uint16 cnt = 0;
+        MOV       R0,#0x0
+        MOV       R1,#0x0
+        SJMP      ??HalUARTReadISR_0
+//  356 
+//  357   while ((isrCfg.rxHead != isrCfg.rxTail) && (cnt < len))
+//  358   {
+//  359     *buf++ = isrCfg.rxBuf[isrCfg.rxHead++];
+??HalUARTReadISR_1:
+        MOV       A,#isrCfg & 0xff
+        ADD       A,R6
+        MOV       DPL,A
+        CLR       A
+        ADDC      A,#(isrCfg >> 8) & 0xff
+        MOV       DPH,A
+        MOVX      A,@DPTR
+        MOV       DPL,R2
+        MOV       DPH,R3
+        MOVX      @DPTR,A
+        MOV       DPTR,#isrCfg + 128
+        MOVX      A,@DPTR
+        INC       A
+        LCALL     ?Subroutine2 & 0xFFFF
+//  360     if (isrCfg.rxHead >= HAL_UART_ISR_RX_MAX)
+??CrossCallReturnLabel_0:
+        CLR       C
+        SUBB      A,#-0x80
+        JC        ??HalUARTReadISR_2
+//  361     {
+//  362       isrCfg.rxHead = 0;
+        MOV       DPTR,#isrCfg + 128
+        CLR       A
+        MOVX      @DPTR,A
+//  363     }
+//  364     cnt++;
+??HalUARTReadISR_2:
+        INC       R0
+        MOV       A,R0
+        JNZ       ??HalUARTReadISR_0
+        INC       R1
+//  365   }
+??HalUARTReadISR_0:
+        MOV       DPTR,#isrCfg + 128
+        MOVX      A,@DPTR
+        MOV       R6,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        XRL       A,R6
+        JZ        ??HalUARTReadISR_3
+        CLR       C
+        MOV       A,R0
+        SUBB      A,R4
+        MOV       A,R1
+        SUBB      A,R5
+        JC        ??HalUARTReadISR_1
+//  366 
+//  367   return cnt;
+??HalUARTReadISR_3:
+        MOV       A,R0
+        MOV       R2,A
+        MOV       A,R1
+        MOV       R3,A
+          CFI EndBlock cfiBlock0
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  368 }
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine0:
+          CFI Block cfiBlock1 Using cfiCommon0
+          CFI NoFunction
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV       R7,#0x1
+        LJMP      ?BANKED_LEAVE_XDATA
+          CFI EndBlock cfiBlock1
+//  369 
+//  370 /******************************************************************************
+//  371  * @fn      HalUARTWriteISR
+//  372  *
+//  373  * @brief   Write a buffer to the UART.
+//  374  *
+//  375  * @param   buf - pointer to the buffer that will be written, not freed
+//  376  *          len - length of
+//  377  *
+//  378  * @return  length of the buffer that was sent
+//  379  *****************************************************************************/
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+//  380 uint16 HalUARTWriteISR(uint8 *buf, uint16 len)
+HalUARTWriteISR:
+          CFI Block cfiBlock2 Using cfiCommon0
+          CFI Function HalUARTWriteISR
+        CODE
+//  381 {
+        MOV       A,#-0x9
+        LCALL     ?BANKED_ENTER_XDATA
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI CFA_SP SP+0
+          CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  382   uint16 cnt;
+//  383 
+//  384   // Enforce all or none.
+//  385   if (HAL_UART_ISR_TX_AVAIL() < len)
+        MOV       DPTR,#isrCfg + 260
+        MOVX      A,@DPTR
+        MOV       R0,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        CLR       C
+        SUBB      A,R0
+        MOV       DPTR,#isrCfg + 260
+        MOVX      A,@DPTR
+        MOV       R0,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        MOV       R6,A
+        MOV       A,R0
+        JNC       ??HalUARTWriteISR_0
+        CLR       C
+        SUBB      A,R6
+        MOV       R0,A
+        SUBB      A,0xE0 /* A   */
+        MOV       R1,A
+        MOV       A,R0
+        ADD       A,#-0x1
+        DEC       R0
+        MOV       A,R1
+        ADDC      A,#-0x1
+        MOV       R1,A
+        MOV       A,R0
+        ORL       A,R1
+        JNZ       ??HalUARTWriteISR_1
+//  386   {
+//  387     return 0;
+//  388   }
+//  389 
+//  390   for (cnt = 0; cnt < len; cnt++)
+??HalUARTWriteISR_2:
+        MOV       R0,#0x0
+        MOV       R1,#0x0
+        SJMP      ??HalUARTWriteISR_3
+??HalUARTWriteISR_0:
+        CLR       C
+        SUBB      A,R6
+        MOV       R0,A
+        SUBB      A,0xE0 /* A   */
+        MOV       R1,A
+        MOV       A,R0
+        ADD       A,#0x7f
+        JNC       ??HalUARTWriteISR_4
+        INC       R1
+??HalUARTWriteISR_4:
+        CLR       C
+        SUBB      A,R4
+        MOV       A,R1
+        SUBB      A,R5
+        JNC       ??HalUARTWriteISR_2
+??HalUARTWriteISR_1:
+        MOV       R2,#0x0
+        MOV       R3,#0x0
+        SJMP      ??HalUARTWriteISR_5
+//  391   {
+//  392     isrCfg.txBuf[isrCfg.txTail] = *buf++;
+//  393     isrCfg.txMT = 0;
+//  394 
+//  395     if (isrCfg.txTail >= HAL_UART_ISR_TX_MAX-1)
+//  396     {
+//  397       isrCfg.txTail = 0;
+//  398     }
+//  399     else
+//  400     {
+//  401       isrCfg.txTail++;
+??HalUARTWriteISR_6:
+        MOVX      A,@DPTR
+        INC       A
+??HalUARTWriteISR_7:
+        MOVX      @DPTR,A
+//  402     }
+//  403 
+//  404     // Keep re-enabling ISR as it might be keeping up with this loop due to other ints.
+//  405     IEN2 |= UTXxIE;  
+        ORL       0x9a,#0x8
+        INC       R0
+        MOV       A,R0
+        JNZ       ??HalUARTWriteISR_3
+        INC       R1
+??HalUARTWriteISR_3:
+        CLR       C
+        MOV       A,R0
+        SUBB      A,R4
+        MOV       A,R1
+        SUBB      A,R5
+        JNC       ??HalUARTWriteISR_8
+        MOV       DPL,R2
+        MOV       DPH,R3
+        MOVX      A,@DPTR
+        PUSH      A
+          CFI CFA_SP SP+-1
+        MOV       DPTR,#isrCfg + 261
+        MOVX      A,@DPTR
+        MOV       R6,A
+        MOV       A,#(isrCfg + 132) & 0xff
+        ADD       A,R6
+        MOV       DPL,A
+        CLR       A
+        ADDC      A,#((isrCfg + 132) >> 8) & 0xff
+        MOV       DPH,A
+        POP       A
+          CFI CFA_SP SP+0
+        LCALL     ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_1:
+        MOV       DPTR,#isrCfg + 262
+        CLR       A
+        MOVX      @DPTR,A
+        MOV       DPTR,#isrCfg + 261
+        MOVX      A,@DPTR
+        CLR       C
+        SUBB      A,#0x7f
+        JC        ??HalUARTWriteISR_6
+        CLR       A
+        SJMP      ??HalUARTWriteISR_7
+//  406   }
+//  407 
+//  408   return cnt;
+??HalUARTWriteISR_8:
+        MOV       A,R0
+        MOV       R2,A
+        MOV       A,R1
+        MOV       R3,A
+??HalUARTWriteISR_5:
+        LJMP      ?Subroutine0 & 0xFFFF
+          CFI EndBlock cfiBlock2
+        REQUIRE IEN2
+//  409 }
+
+        RSEG BANKED_CODE:HUGECODE:NOROOT(0)
+?Subroutine2:
+          CFI Block cfiCond3 Using cfiCommon0
+          CFI Function HalUARTReadISR
+          CFI Conditional ??CrossCallReturnLabel_0
+          CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI CFA_SP SP+-2
+          CFI CFA_XSP16 add(XSP16, 9)
+          CFI Block cfiCond4 Using cfiCommon0
+          CFI (cfiCond4) Function HalUARTWriteISR
+          CFI (cfiCond4) Conditional ??CrossCallReturnLabel_1
+          CFI (cfiCond4) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+          CFI (cfiCond4) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+          CFI (cfiCond4) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+          CFI (cfiCond4) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+          CFI (cfiCond4) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+          CFI (cfiCond4) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+          CFI (cfiCond4) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+          CFI (cfiCond4) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+          CFI (cfiCond4) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+          CFI (cfiCond4) CFA_SP SP+-2
+          CFI (cfiCond4) CFA_XSP16 add(XSP16, 9)
+          CFI Block cfiPicker5 Using cfiCommon1
+          CFI (cfiPicker5) NoFunction
+          CFI (cfiPicker5) Picker
+        MOVX      @DPTR,A
+        MOV       DPL,R2
+        MOV       DPH,R3
+        INC       DPTR
+        MOV       R2,DPL
+        MOV       R3,DPH
+        RET
+          CFI EndBlock cfiCond3
+          CFI EndBlock cfiCond4
+          CFI EndBlock cfiPicker5
+//  410 
+//  411 /******************************************************************************
+//  412  * @fn      HalUARTPollISR
+//  413  *
+//  414  * @brief   Poll a USART module implemented by ISR.
+//  415  *
+//  416  * @param   none
+//  417  *
+//  418  * @return  none
+//  419  *****************************************************************************/
+//  420 static void HalUARTPollISR(void)
+//  421 {
+//  422   if (isrCfg.uartCB != NULL)
+//  423   {
+//  424     uint16 cnt = HAL_UART_ISR_RX_AVAIL();
+//  425     uint8 evt = 0;
+//  426 
+//  427     if (isrCfg.rxTick)
+//  428     {
+//  429       // Use the LSB of the sleep timer (ST0 must be read first anyway).
+//  430       uint8 decr = ST0 - isrCfg.rxShdw;
+//  431 
+//  432       if (isrCfg.rxTick > decr)
+//  433       {
+//  434         isrCfg.rxTick -= decr;
+//  435       }
+//  436       else
+//  437       {
+//  438         isrCfg.rxTick = 0;
+//  439       }
+//  440     }
+//  441     isrCfg.rxShdw = ST0;
+//  442 
+//  443     if (cnt >= HAL_UART_ISR_RX_MAX-1)
+//  444     {
+//  445       evt = HAL_UART_RX_FULL;
+//  446     }
+//  447     else if (cnt >= HAL_UART_ISR_HIGH)
+//  448     {
+//  449       evt = HAL_UART_RX_ABOUT_FULL;
+//  450     }
+//  451     else if (cnt && !isrCfg.rxTick)
+//  452     {
+//  453       evt = HAL_UART_RX_TIMEOUT;
+//  454     }
+//  455 
+//  456     if (isrCfg.txMT)
+//  457     {
+//  458       isrCfg.txMT = 0;
+//  459       evt |= HAL_UART_TX_EMPTY;
+//  460     }
+//  461 
+//  462     if (evt)
+//  463     {
+//  464       isrCfg.uartCB(HAL_UART_ISR-1, evt);
+//  465     }
+//  466   }
+//  467 }
+//  468 
+//  469 /**************************************************************************************************
+//  470  * @fn      HalUARTRxAvailISR()
+//  471  *
+//  472  * @brief   Calculate Rx Buffer length - the number of bytes in the buffer.
+//  473  *
+//  474  * @param   none
+//  475  *
+//  476  * @return  length of current Rx Buffer
+//  477  **************************************************************************************************/
+//  478 static uint16 HalUARTRxAvailISR(void)
+//  479 {
+//  480   return HAL_UART_ISR_RX_AVAIL();
+//  481 }
+//  482 
+//  483 /******************************************************************************
+//  484  * @fn      HalUARTSuspendISR
+//  485  *
+//  486  * @brief   Suspend UART hardware before entering PM mode 1, 2 or 3.
+//  487  *
+//  488  * @param   None
+//  489  *
+//  490  * @return  None
+//  491  *****************************************************************************/
+//  492 static void HalUARTSuspendISR( void )
+//  493 {
+//  494   UxCSR &= ~CSR_RE;
+//  495 }
+//  496 
+//  497 /******************************************************************************
+//  498  * @fn      HalUARTResumeISR
+//  499  *
+//  500  * @brief   Resume UART hardware after exiting PM mode 1, 2 or 3.
+//  501  *
+//  502  * @param   None
+//  503  *
+//  504  * @return  None
+//  505  *****************************************************************************/
+//  506 static void HalUARTResumeISR( void )
+//  507 {
+//  508   UxUCR |= UCR_FLUSH;
+//  509   UxCSR |= CSR_RE;
+//  510 }
+//  511 
+//  512 /***************************************************************************************************
+//  513  * @fn      halUartRxIsr
+//  514  *
+//  515  * @brief   UART Receive Interrupt
+//  516  *
+//  517  * @param   None
+//  518  *
+//  519  * @return  None
+//  520  ***************************************************************************************************/
+//  521 #if (HAL_UART_ISR == 1)
+//  522 HAL_ISR_FUNCTION( halUart0RxIsr, URX0_VECTOR )
+//  523 #else
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  524 HAL_ISR_FUNCTION( halUart1RxIsr, URX1_VECTOR )
+halUart1RxIsr:
+          CFI Block cfiBlock6 Using cfiCommon1
+          CFI Function halUart1RxIsr
+        CODE
+//  525 #endif
+//  526 
+//  527 {
+        PUSH      A
+          CFI A Frame(CFA_SP, 3)
+          CFI CFA_SP SP+-3
+        PUSH      PSW
+          CFI PSW Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        MOV       A,R0
+          CFI R0 A
+        PUSH      A
+          CFI R0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        MOV       A,R1
+          CFI R1 A
+        PUSH      A
+          CFI R1 Frame(CFA_SP, 6)
+          CFI CFA_SP SP+-6
+        PUSH      DPL
+          CFI DPL0 Frame(CFA_SP, 7)
+          CFI CFA_SP SP+-7
+        PUSH      DPH
+          CFI DPH0 Frame(CFA_SP, 8)
+          CFI CFA_SP SP+-8
+        ; Saved register size: 6
+        ; Auto size: 0
+//  528   uint8 tmp = UxDBUF;
+        MOV       R0,0xf9+0x0
+//  529   isrCfg.rxBuf[isrCfg.rxTail] = tmp;
+        MOV       A,R0
+        PUSH      A
+          CFI CFA_SP SP+-9
+        MOV       DPTR,#isrCfg + 129
+        MOVX      A,@DPTR
+        MOV       R0,A
+        MOV       A,#isrCfg & 0xff
+        ADD       A,R0
+        MOV       DPL,A
+        CLR       A
+        ADDC      A,#(isrCfg >> 8) & 0xff
+        MOV       DPH,A
+        POP       A
+          CFI CFA_SP SP+-8
+        MOVX      @DPTR,A
+//  530 
+//  531   // Re-sync the shadow on any 1st byte received.
+//  532   if (isrCfg.rxHead == isrCfg.rxTail)
+        MOV       DPTR,#isrCfg + 128
+        MOVX      A,@DPTR
+        MOV       R0,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        XRL       A,R0
+        JNZ       ??halUart1RxIsr_0
+//  533   {
+//  534     isrCfg.rxShdw = ST0;
+        MOV       A,0x95
+        MOV       DPTR,#isrCfg + 131
+        MOVX      @DPTR,A
+//  535   }
+//  536 
+//  537   if (++isrCfg.rxTail >= HAL_UART_ISR_RX_MAX)
+??halUart1RxIsr_0:
+        MOV       DPTR,#isrCfg + 129
+        MOVX      A,@DPTR
+        INC       A
+        MOVX      @DPTR,A
+        CLR       C
+        SUBB      A,#-0x80
+        JC        ??halUart1RxIsr_1
+//  538   {
+//  539     isrCfg.rxTail = 0;
+        CLR       A
+        MOVX      @DPTR,A
+//  540   }
+//  541 
+//  542   isrCfg.rxTick = HAL_UART_ISR_IDLE;
+??halUart1RxIsr_1:
+        INC       DPTR
+        MOV       A,#-0x3a
+        MOVX      @DPTR,A
+//  543 }
+          CFI EndBlock cfiBlock6
+        REQUIRE ?Subroutine1
+        REQUIRE U1DBUF
+        REQUIRE ST0
+        ; // Fall through to label ?Subroutine1
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine1:
+          CFI Block cfiBlock7 Using cfiCommon1
+          CFI NoFunction
+          CFI CFA_SP SP+-8
+          CFI A Frame(CFA_SP, 3)
+          CFI PSW Frame(CFA_SP, 4)
+          CFI DPL0 Frame(CFA_SP, 7)
+          CFI DPH0 Frame(CFA_SP, 8)
+          CFI R0 Frame(CFA_SP, 5)
+          CFI R1 Frame(CFA_SP, 6)
+        POP       DPH
+          CFI CFA_SP SP+-7
+          CFI DPH0 SameValue
+        POP       DPL
+          CFI CFA_SP SP+-6
+          CFI DPL0 SameValue
+        POP       A
+          CFI CFA_SP SP+-5
+          CFI R1 A
+        MOV       R1,A
+          CFI R1 SameValue
+        POP       A
+          CFI CFA_SP SP+-4
+          CFI R0 A
+        MOV       R0,A
+          CFI R0 SameValue
+        POP       PSW
+          CFI CFA_SP SP+-3
+          CFI PSW SameValue
+        POP       A
+          CFI CFA_SP SP+-2
+          CFI A SameValue
+        RETI
+          CFI EndBlock cfiBlock7
+//  544 
+//  545 /***************************************************************************************************
+//  546  * @fn      halUartTxIsr
+//  547  *
+//  548  * @brief   UART Transmit Interrupt
+//  549  *
+//  550  * @param   None
+//  551  *
+//  552  * @return  None
+//  553  ***************************************************************************************************/
+//  554 #if (HAL_UART_ISR == 1)
+//  555 HAL_ISR_FUNCTION( halUart0TxIsr, UTX0_VECTOR )
+//  556 #else
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  557 HAL_ISR_FUNCTION( halUart1TxIsr, UTX1_VECTOR )
+halUart1TxIsr:
+          CFI Block cfiBlock8 Using cfiCommon1
+          CFI Function halUart1TxIsr
+        CODE
+//  558 #endif
+//  559 {
+        PUSH      A
+          CFI A Frame(CFA_SP, 3)
+          CFI CFA_SP SP+-3
+        PUSH      PSW
+          CFI PSW Frame(CFA_SP, 4)
+          CFI CFA_SP SP+-4
+        MOV       A,R0
+          CFI R0 A
+        PUSH      A
+          CFI R0 Frame(CFA_SP, 5)
+          CFI CFA_SP SP+-5
+        MOV       A,R1
+          CFI R1 A
+        PUSH      A
+          CFI R1 Frame(CFA_SP, 6)
+          CFI CFA_SP SP+-6
+        PUSH      DPL
+          CFI DPL0 Frame(CFA_SP, 7)
+          CFI CFA_SP SP+-7
+        PUSH      DPH
+          CFI DPH0 Frame(CFA_SP, 8)
+          CFI CFA_SP SP+-8
+        ; Saved register size: 6
+        ; Auto size: 0
+//  560   if (isrCfg.txHead == isrCfg.txTail)
+        MOV       DPTR,#isrCfg + 260
+        MOVX      A,@DPTR
+        MOV       R0,A
+        INC       DPTR
+        MOVX      A,@DPTR
+        XRL       A,R0
+        JNZ       ??halUart1TxIsr_0
+//  561   {
+//  562     IEN2 &= ~UTXxIE;
+        ANL       0x9a,#0xf7
+//  563     isrCfg.txMT = 1;
+        INC       DPTR
+        MOV       A,#0x1
+        SJMP      ??halUart1TxIsr_1
+//  564   }
+//  565   else
+//  566   {
+//  567     UTXxIF = 0;
+??halUart1TxIsr_0:
+        CLR       0xe8.2
+//  568     UxDBUF = isrCfg.txBuf[isrCfg.txHead++];
+        MOV       DPTR,#isrCfg + 260
+        MOVX      A,@DPTR
+        MOV       R0,A
+        MOV       A,#0x1
+        ADD       A,R0
+        MOVX      @DPTR,A
+        MOV       A,#(isrCfg + 132) & 0xff
+        ADD       A,R0
+        MOV       DPL,A
+        CLR       A
+        ADDC      A,#((isrCfg + 132) >> 8) & 0xff
+        MOV       DPH,A
+        MOVX      A,@DPTR
+        MOV       0xf9,A
+//  569 
+//  570     if (isrCfg.txHead >= HAL_UART_ISR_TX_MAX)
+        MOV       DPTR,#isrCfg + 260
+        MOVX      A,@DPTR
+        CLR       C
+        SUBB      A,#-0x80
+        JC        ??halUart1TxIsr_2
+//  571     {
+//  572       isrCfg.txHead = 0;
+        CLR       A
+??halUart1TxIsr_1:
+        MOVX      @DPTR,A
+//  573     }
+//  574   }
+//  575 }
+??halUart1TxIsr_2:
+        SJMP      ?Subroutine1
+          CFI EndBlock cfiBlock8
+        REQUIRE IEN2
+        REQUIRE _A_IRCON2
+        REQUIRE U1DBUF
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 27
+`??halUart1RxIsr::??INTVEC 27`:
+        LJMP       (halUart1RxIsr)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 115
+`??halUart1TxIsr::??INTVEC 115`:
+        LJMP       (halUart1TxIsr)
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??HalUARTReadISR::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    HalUARTReadISR
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+`??HalUARTWriteISR::?relay`:
+        CODE
+        LCALL   ?BDISPATCH
+        DATA24
+        DC24    HalUARTWriteISR
+
+        END
+//  576 
+//  577 /******************************************************************************
+//  578 ******************************************************************************/
+// 
+// 229 bytes in segment BANKED_CODE
+//  12 bytes in segment BANK_RELAYS
+//   6 bytes in segment INTVEC
+// 154 bytes in segment NEAR_CODE
+//   4 bytes in segment SFR_AN
+// 265 bytes in segment XDATA_Z
+// 
+// 166 bytes of CODE     memory (+ 6 bytes shared)
+//   0 bytes of DATA     memory (+ 4 bytes shared)
+// 229 bytes of HUGECODE memory
+// 265 bytes of XDATA    memory
+//
+//Errors: none
+//Warnings: 7
